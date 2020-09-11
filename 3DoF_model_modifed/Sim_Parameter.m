@@ -53,11 +53,11 @@
 
     % Original
     %datThr.ThrustUpper = 2.5e+5;                                            % Thrust upper bound                       [N]
-    %datThr.ThrustLower = 1e+5;                                            % Thrust lower bound                       [N]
+    datThr.ThrustLower = 1e+5;                                               % Thrust lower bound                       [N]
     
     % Change
-    datThr.ThrustUpper = 10e+6;                                            % Thrust upper bound                       [N]
-    datThr.ThrustLower = 1e+5;                                                % Thrust lower bound                       [N]
+    datThr.ThrustUpper = 5e+5;                                              % Thrust upper bound                       [N]
+    %datThr.ThrustLower = 1e+5;                                             % Thrust lower bound                       [N]
  
 %.. Initial Conditions
 
@@ -67,18 +67,13 @@
                                   107.00000 ] ;  
                               
     % Initial Conditions
-    %datRlv.Rbll0            =   [ 0 ; 500 ; -1000.0 ] ;                     % Initial Body Position w.r.t. Landing Point(L) in L-Coord.
     datRlv.Rbll0            =   [ 0 ; 500 ; -500.0 ] ;                     % Initial Body Position w.r.t. Landing Point(L) in L-Coord.
     
+    datRlv.Vbll0            =   [ 50 ; 0 ; 50 ] ;                          % Initial Body Velocity. w.r.t. Landing Point(L) in L-Coord. 
     
+    datRlv.Mass0            =   1.5e+4 ;                                   % Initial Body Mass 
     
-    
-    datRlv.Vbll0            =   [ 50 ; 0 ; 50 ] ;                       % Initial Body Velocity. w.r.t. Landing Point(L) in L-Coord. 
-    
-    %datRlv.Mass0            =   1.5e+4 ;                                     % Initial Body Mass 
-    
-    % Change
-    datRlv.Mass0            =   5.5e+5;
+
     
     % Final Conditions 
     datRlv.Rbllf        	=   [ 0.0 ; 0.0 ; 0.0 ] ;                       % Final Body Position w.r.t. Landing Point(L) in L-Coord.                                         

@@ -70,18 +70,7 @@
     
     [N,E,D]         = 	 Compute_cvx_Euler(position,velocity,datSim.Time);
     Thr_Cmd         =    [N;E;D];
-%      Check = isnan(Thr_Cmd);
-%      if(Check ==[1;1;1])
-% %          if(datSim.dt == 0.1)
-% %             datSim.tf = datSim.tf  + datSim.dt;
-% %             datSim.dt = datSim.dt/4;
-% %          else
-% %             datSim.dt = datSim.dt/2;
-% %          end
-%          [N,E,D]         = 	 Compute_cvx_Euler(position,velocity,datSim.Time);
-%          Thr_Cmd         =    [N;E;D];
-%       end
-    
+
     %Thr_Cmd          = [0;0;0];
     
 

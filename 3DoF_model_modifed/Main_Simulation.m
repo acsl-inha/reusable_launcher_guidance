@@ -36,8 +36,6 @@
             break
         end
         
-        
-        
     	Thrust ; 
         
         Dynamics ; 
