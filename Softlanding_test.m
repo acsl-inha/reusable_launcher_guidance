@@ -1,0 +1,163 @@
+
+
+%.. Global and Persistent Variables 
+    global  datThr  datSim    datRlv    datUnit     outDyn
+    
+
+    
+    Rbii            =       outDyn.Rbii ; 
+    Vbii            =       outDyn.Vbii ; 
+    Mass            =       outDyn.Mass ; 
+    cE_L            =       outDyn.cE_L ; 
+    Rlie            =       outDyn.Rlie ; 
+    
+    
+%.. Landing Coordinate System
+
+    % Body Position and Velocity in ECEF
+    cI_E            =       GetDCM_I2E( datUnit.Omega * datSim.Time );      % DCM from I-Coord. to E-Coord. 
+    Rbie            =       cI_E * Rbii ;                                   % Body Position w.r.t. Earth Center in E-Coord. 
+    Vbie            =       cI_E * Vbii ;                                   % Body Velocity w.r.t. Earth Center in E-Coord.  
+
+    % Geocentric and Geodetic Positions 
+
+    Pos_Geoc        =       CnvPos_E2C( Rbie ) ;                            % Body Position in Geocentric. 
+    Pos_Geod        =       CnvPos_E2D( Rbie ) ;                            % Body Position in Geodetic. 
+    
+    % DCM from E- Coord. to D-Coord. 
+    cE_D            =       GetDCM_E2D( Pos_Geod ) ;                      	
+    
+    % Body Geographic Velocity (w.r.t. Earth) 
+    Weii         	=       [ 0.0 ; 0.0 ; datUnit.Omega ] ;                 % Earth Angular Velocity w.r.t. I-Frame in I-Coord. 
+    Vbei         	=       Vbii - cross( Weii, Rbii )  ;                 	% Body Velocity w.r.t. Earth(any poin on Earth) in I-Coord. 
+    cI_D            =       cE_D * cI_E ;                                   % DCM from I-Coord. to D-Coord. 
+    Vbed        	=       cI_D * Vbei ;                                   % Body Velocity w.r.t. Earth(any poin on Earth) in D-Coord.
+
+    % Velocity Angles from Geographic Velocity 
+    angVbed      	=       GetAngle( Vbed ) ;                              % Heading and Flight Path Angles 
+    
+    % DCM from Geodetic to Velocity Coordinate
+    cD_V        	=       GetAng2DCM( angVbed ) ;                         
+    
+    % Body Position w.r.t.Landing Point in L-Coords. 
+    Rble            =       Rbie - Rlie ;                                   % Body Position w.r.t. Landing Point in E-Coord. 
+    Rbll            =       cE_L * Rble ;                                   % Body Position w.r.t. Landing Point in L-Coord.
+    
+    % Body Velocity w.r.t. Landing Point in L-Coords. 
+    Wlii            =       [ 0.0 ; 0.0 ; datUnit.Omega ] ;                 % Landing Point Angular Velocity w.r.t. I-Frame in I-Coord. 
+    Vbli            =       Vbii - cross( Wlii, Rbii ) ;                    % Body Velocity w.r.t. Landing Point in I-Coord. 
+    cI_L            =       cE_L * cI_E ;                                   % DCM from I-Coord. to L-Coord. 
+    Vbll            =       cI_L * Vbli ;                                   % Body Velocity w.r.t. Landing Point in L-Coord.     
+    
+    position        =       Rbll ;                                          % L-Coord position
+    velocity        =       Vbll ;                                          % L-Coord velocity
+    
+  
+
+    %% test
+position
+velocity
+datSim.Time
+outDyn.Mass
+datSim.tf - datSim.Time
+datSim.dt 
+    %%
+%.. Local Variables
+
+    t_f                 =   datSim.tf - datSim.Time ;                                                 % Final time
+    delt                =   100 * datSim.dt;                                                                 %
+    N                   =   fix(t_f / delt);                                                           % Step size
+    Alpha               =   1/( datThr.Isp * datUnit.AGRAV);                                           % Fuel consumption
+    g_e                 =   datUnit.AGRAV;                                                             % Earth grvity
+    r_0                 =   position;                                                              % Initial position in L-Coord.
+    v_0                 =   velocity;                                                              % Initial velocity in L-Coord.
+    r_f                 =   datRlv.Rbllf;                                                              % Final position in L-Coord.
+    v_f                 =   datRlv.Vbllf;                                                              % Final velocity in L-Coord.
+    Mass                =   outDyn.Mass;
+    ThrustUpper         =   datThr.ThrustUpper ;
+    for t = 1:N+1
+        z_0(t) = log(Mass - Alpha * ThrustUpper * (t-1) * delt);
+        Mu1(t) = datThr.ThrustLower * exp(-z_0(t));
+        Mu2(t) = ThrustUpper * exp(-z_0(t));
+    end
+    
+
+    
+
+ %.. compute cvx    
+    cvx_begin
+        
+        variable u(3,N+1)
+        variable r(3,N+1)
+        variable v(3,N+1)
+        variable Sigma_var(N+1)
+        variable z(N+1)
+     
+        minimize ( -z(end))
+        
+        subject to
+            r(:,1) == r_0
+            v(:,1) == v_0
+            r(:,end) == r_f
+            v(:,end) == v_f
+            
+            for t = 1:N
+                
+                r(:,t+1) == r(:,t) + delt * (v(:,t))
+                v(:,t+1) == v(:,t) + delt * (u(:,t)+ [0;0;-g_e])
+                z(t+1) == z(t) - Alpha * delt * (Sigma_var(t))
+                norm( u(:,t) ) <= Sigma_var(t)
+                Mu1(t) * ( 1 - ( z(t) - z_0(t) )) <= Sigma_var(t)
+                Sigma_var(t) <= Mu2(t) * (1 - ( z(t) - z_0(t) ))
+                z_0(t) <= z(t)
+                z(t) <= log( Mass - Alpha * datThr.ThrustLower * (t-1) * delt)
+                r(3,t) <= 0
+                
+            end
+
+            norm(u(:,end)) <= Sigma_var(end)
+            Mu1(end) * ( 1 - (z(end) -z_0(end))) <= Sigma_var(end)
+            Sigma_var(:,end) <= Mu2(end) * (1 - (z(end) - z_0(end)))
+            z_0(end) <= z(end)
+            z(end) <= log(Mass - Alpha * datThr.ThrustLower * N * delt)
+            r(3,t) <= 0
+
+    cvx_end
+    
+
+for i = 1:N+1
+    Thrust(:,i) = u(:,i) * exp(z(i));
+end
+%%
+
+%% plotting
+
+    x = 0:delt:t_f;
+
+    
+    figure(1)
+    subplot(3,1,1)
+    plot(x,Thrust(1,:))
+    grid on ; hold on;
+    title('Thrust', 'FontSize', 12)
+    subplot(3,1,2)
+    plot(x,Thrust(2,:))
+    grid on ; hold on; 
+    subplot(3,1,3)
+    plot(x,Thrust(3,:))
+    grid on ; hold on; 
+
+    figure(2)
+    subplot(3,1,1)
+    plot(x,r(1,:))
+    grid on ; hold on;
+    title('Position', 'FontSize', 12)
+    subplot(3,1,2)
+    plot(x,r(2,:))
+    grid on ; hold on; 
+    subplot(3,1,3)
+    plot(x,r(3,:))
+    grid on ; hold on; 
+     
+
+
