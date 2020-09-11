@@ -8,6 +8,8 @@
 %                                                                         %
 %/////////////////////////////////////////////////////////////////////////%
 
+
+% test
 %.. Global Variables 
 
     global      datSim      datUnit     datAero     datThr      datRlv        
