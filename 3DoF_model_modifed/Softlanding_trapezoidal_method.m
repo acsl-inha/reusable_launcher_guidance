@@ -48,11 +48,11 @@ Sim_Parameter;
                 
                 if( t==1)
                         r(:,t+1) == r(:,t) + delt * (v(:,t))
-                        v(:,t+1) == v(:,t) + delt * (u(:,t)+ [0;0;-g_e])
+                        v(:,t+1) == v(:,t) + delt * (u(:,t)+ [0;0;g_e])
                     
                 else
                         r(:,t+1) == r(:,t) + 0.5 * delt * ( v(:,t) + v(:,t+1) ) 
-                        v(:,t+1) == v(:,t) + 0.5 * delt * ( u(:,t) +u(:,t+1)) + [0;0;-g_e] *delt
+                        v(:,t+1) == v(:,t) + 0.5 * delt * ( u(:,t) +u(:,t+1)) + [0;0;g_e] *delt
                 end
                 
 
