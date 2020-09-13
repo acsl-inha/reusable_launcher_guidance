@@ -30,7 +30,6 @@
             
 %.. Exporting Data
 
-    %outAdy.Fi_Aero  =  	Fi_Aero ; 
-    outAdy.Fi_Aero  =  	0 ; 
+    outAdy.Fi_Aero  =  	Fi_Aero ; 
     
     

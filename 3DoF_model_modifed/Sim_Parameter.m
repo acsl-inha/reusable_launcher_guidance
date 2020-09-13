@@ -52,11 +52,11 @@
 %.. Thrust Bound
 
     % Original
-    %datThr.ThrustUpper = 2.5e+5;                                            % Thrust upper bound                       [N]
+    datThr.ThrustUpper = 2.5e+5;                                            % Thrust upper bound                       [N]
     datThr.ThrustLower = 1e+5;                                               % Thrust lower bound                       [N]
     
     % Change
-    datThr.ThrustUpper = 5e+5;                                              % Thrust upper bound                       [N]
+    %datThr.ThrustUpper = 10e+5;                                              % Thrust upper bound                       [N]
     %datThr.ThrustLower = 1e+5;                                             % Thrust lower bound                       [N]
  
 %.. Initial Conditions
