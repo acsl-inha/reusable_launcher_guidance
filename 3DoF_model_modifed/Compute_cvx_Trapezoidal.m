@@ -49,7 +49,7 @@ function [N,E,D]= Compute_cvx_Trapezoidal(position,velocity,time_now)
                     
                 else
                         r(:,t+1) == r(:,t) + 0.5 * delt * ( v(:,t) + v(:,t+1) ) 
-                        v(:,t+1) == v(:,t) + 0.5 * delt * ( u(:,t) +u(:,t+1)) + [0;0;-g_e] *delt 
+                        v(:,t+1) == v(:,t) + 0.5 * delt * ( u(:,t) +u(:,t+1)) + [0;0;g_e] *delt 
                 end
                 
                 z(t+1) == z(t) - Alpha * delt * (Sigma_var(t))

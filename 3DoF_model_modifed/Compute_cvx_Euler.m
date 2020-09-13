@@ -44,7 +44,7 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,time_now)
             for t = 1:N
                 
                 r(:,t+1) == r(:,t) + delt * (v(:,t))
-                v(:,t+1) == v(:,t) + delt * (u(:,t)+ [0;0;-g_e])
+                v(:,t+1) == v(:,t) + delt * (u(:,t)+ [0;0;g_e])
                 z(t+1) == z(t) - Alpha * delt * (Sigma_var(t))
                 norm( u(:,t) ) <= Sigma_var(t)
                 Mu1(t) * ( 1 - ( z(t) - z_0(t) )) <= Sigma_var(t)
