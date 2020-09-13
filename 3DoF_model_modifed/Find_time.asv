@@ -1,0 +1,9 @@
+function T_f = Find_time(Interval)
+    %.. Global and Persistent Variables 
+    global      datSim
+    
+    % Find the appropriate time
+    T_f =  fix(datSim.tf/datSim.dt) + Interval;
+    
+end
+

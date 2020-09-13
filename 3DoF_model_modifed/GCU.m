@@ -65,6 +65,24 @@
 %.. GCU Module
 
     % Thrust ( Your Guidance Command, L-Frame )
+    temp_t                           =     fix( abs( position(3) / velocity(3)));
+    k                                =     6;
+    datSim.tf                        =     temp_t;
+    N                                =     fix(datSim.tf / datSim.dt);
+    
+    while(1)
+        
+        [N,E,D]         = 	 Compute_cvx_Euler(position,velocity,N);
+        Thr_Cmd         =    [N;E;D];
+        Check = isnan(Thr_Cmd);
+        if(Check ==[1;1;1])
+            temp_timestep =  Find_timestep(k,1);
+            
+            
+        end
+        
+        
+    end
     
     
     

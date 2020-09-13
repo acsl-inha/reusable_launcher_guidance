@@ -1,4 +1,4 @@
-function [N,E,D]= Compute_cvx_Euler(position,velocity,time_now)
+function [N,E,D]= Compute_cvx_Euler(position,velocity,N)
 
 %.. Global and Persistent Variables 
 
@@ -7,9 +7,8 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,time_now)
     
 %.. Local Variables
 
-    t_f                 =   datSim.tf - time_now;                                 % Remaining time
+    
     delt                =   datSim.dt;                                            %
-    N                   =   fix(t_f / delt);                                      % Step size
     Alpha               =   1/( datThr.Isp * datUnit.AGRAV);                      % Fuel consumption
     g_e                 =   datUnit.AGRAV;                                        % Earth grvity
     r_0                 =   position;                                             % Initial position in L-Coord.
