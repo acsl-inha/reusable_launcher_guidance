@@ -25,7 +25,7 @@ Sim_Parameter;
         Mu2(t) = datThr.ThrustUpper * exp(-z_0(t));
     end
     
-    
+ 
  %.. compute cvx    
     cvx_begin
         
