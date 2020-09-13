@@ -136,7 +136,7 @@
     grid on ; hold on; 
     
     
-    
+    %% test
     figure(6)  
     subplot(3,1,1)  
     plot( outSim.Time(:,1), outSim.Vx_L(:,1), 'b', 'linewidth', 1.5 ) 
