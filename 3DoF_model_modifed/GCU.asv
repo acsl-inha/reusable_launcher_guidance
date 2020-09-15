@@ -65,23 +65,36 @@
 %.. GCU Module
 
     % Thrust ( Your Guidance Command, L-Frame )
-    tem_t = fix(-position(3)/velocity(3));
-    k = 6;
-    datSim.tf = tem_t;
-    while(1)
+    temp_t                   =     fix( abs( position(3) / velocity(3)));
+    k                        =     5;                                       % Multiplier nubmer
+    datSim.tf                =     temp_t;
+    N_step                        =     fix(datSim.tf / datSim.dt);
+    
+
+    % First Step(Find optimal fitime)
+        Check = Check_Infeasible(position,velocity,N_step);                 % Check Inf & Feasible
         
-        [N,E,D]         = 	 Compute_cvx_Euler(position,velocity,datSim.Time);
-        Thr_Cmd         =    [N;E;D];
-        Check = isnan(Thr_Cmd);
-        if(Check ==[1;1;1])
-            tem_t =  2^k
+        if(Check == 0)                                                      % Infeasible                                                          
+            while(1)
+                N_step =  Find_timestep(N_step,k,1);                        % Add step 
+                Check = Check_Infeasible(position,velocity,N_step);
+                if(Check == 1)                                              % Feasible
+                    break
+                end       
+            end
+        end 
+        
+        while(k>0)
+            k = k-1;
+            N_step_temp = Find_timestep(N_step,k,-1);                            % Subtrack step
+            Check = Check_Infeasible(position,velocity,N_step_temp);
+            if(Check == 1)
+                N_temp = N_step_temp;
+            end
         end
         
-        
-    end
-    
-    
-    
+    % Second Step
+
     [N,E,D]         = 	 Compute_cvx_Euler(position,velocity,datSim.Time);
     Thr_Cmd         =    [N;E;D];
 

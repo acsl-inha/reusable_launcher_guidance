@@ -65,28 +65,37 @@
 %.. GCU Module
 
     % Thrust ( Your Guidance Command, L-Frame )
-    temp_t                           =     fix( abs( position(3) / velocity(3)));
-    k                                =     6;
-    datSim.tf                        =     temp_t;
-    N                                =     fix(datSim.tf / datSim.dt);
+    temp_t                   =     fix( abs( position(3) / velocity(3)));
+    k                        =     5;                                       % Multiplier nubmer
+    datSim.tf                =     temp_t;
+    N_step                        =     fix(datSim.tf / datSim.dt);
     
-    while(1)
+
+    % First Step(Find optimal final time)
+        Check = Check_Infeasible(position,velocity,N_step);                 % Check Inf & Feasible
         
-        [N,E,D]         = 	 Compute_cvx_Euler(position,velocity,N);
-        Thr_Cmd         =    [N;E;D];
-        Check = isnan(Thr_Cmd);
-        if(Check ==[1;1;1])
-            temp_timestep =  Find_timestep(k,1);
-            
-            
+        if(Check == 0)                                                      % Infeasible                                                          
+            while(1)
+                N_step =  Find_timestep(N_step,k,1);                        % Add step 
+                Check = Check_Infeasible(position,velocity,N_step);
+                if(Check == 1)                                              % Feasible
+                    break
+                end       
+            end
+        end 
+        
+        while(k>0)
+            k = k-1;
+            N_step_temp = Find_timestep(N_step,k,-1);                            % Subtrack step
+            Check = Check_Infeasible(position,velocity,N_step_temp);
+            if(Check == 1)
+                N_step = N_step_temp;
+            end
         end
         
-        
-    end
-    
-    
-    
-    [N,E,D]         = 	 Compute_cvx_Euler(position,velocity,datSim.Time);
+    % Second Step(Find optimal Thrust)
+
+    [N,E,D]         = 	 Compute_cvx_Euler(position,velocity,N_step);
     Thr_Cmd         =    [N;E;D];
 
     %Thr_Cmd          = [0;0;0];

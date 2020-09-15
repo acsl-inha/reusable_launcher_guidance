@@ -1,3 +1,6 @@
-k = rand;
+k = 3;
 
-fix(3/4)
+while(k>0)
+   disp(k)
+   k = k-1;
+end
