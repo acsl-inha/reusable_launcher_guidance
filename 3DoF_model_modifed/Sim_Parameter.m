@@ -18,7 +18,7 @@
 %.. Simulation Setting
 
 
-    datSim.tf               =   15 ;
+    datSim.tf               =   20 ;
     datSim.dt               =   0.1; 
     datSim.nStep            =   fix( datSim.tf / datSim.dt ) ;
     datSim.iRun             =   0; 
@@ -67,7 +67,8 @@
                                   107.00000 ] ;  
                               
     % Initial Conditions
-    datRlv.Rbll0            =   [ 0 ; 500 ; -500.0 ] ;                     % Initial Body Position w.r.t. Landing Point(L) in L-Coord.
+%     datRlv.Rbll0            =   [ 0 ; 500 ; -500.0 ] ;                     % Initial Body Position w.r.t. Landing Point(L) in L-Coord.
+    datRlv.Rbll0            =   [ 0 ; 500 ; -1000.0 ] ;                     % Initial Body Position w.r.t. Landing Point(L) in L-Coord.
     
     datRlv.Vbll0            =   [ 50 ; 0 ; 50 ] ;                          % Initial Body Velocity. w.r.t. Landing Point(L) in L-Coord. 
     
