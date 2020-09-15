@@ -19,7 +19,7 @@
 
 
     datSim.tf               =   15 ;
-    datSim.dt               =   1; 
+    datSim.dt               =   0.1; 
     datSim.nStep            =   fix( datSim.tf / datSim.dt ) ;
     datSim.iRun             =   0; 
     
