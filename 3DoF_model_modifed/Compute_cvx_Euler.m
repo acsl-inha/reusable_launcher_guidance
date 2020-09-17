@@ -50,7 +50,7 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N)
                 Sigma_var(t) <= Mu2(t) * (1 - ( z(t) - z_0(t) ))
                 z_0(t) <= z(t)
                 z(t) <= log( Mass - Alpha * datThr.ThrustLower * (t-1) * delt)
-%                 r(3,t) <= 0
+
                 
             end
 
@@ -59,7 +59,6 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N)
             Sigma_var(:,end) <= Mu2(end) * (1 - (z(end) - z_0(end)))
             z_0(end) <= z(end)
             z(end) <= log(Mass - Alpha * datThr.ThrustLower * N * delt)
-%             r(3,end) <= 0
 
     cvx_end
     

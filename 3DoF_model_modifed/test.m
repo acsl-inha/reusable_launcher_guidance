@@ -1,6 +1,3 @@
 k = 3;
 
-while(k>0)
-   disp(k)
-   k = k-1;
-end
+a , b =3 ,4

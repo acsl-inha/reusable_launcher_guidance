@@ -18,7 +18,7 @@
 %.. Simulation Setting
 
 
-    datSim.tf               =   15 ;
+    datSim.tf               =   20 ;
     datSim.dt               =   0.1; 
     datSim.nStep            =   fix( datSim.tf / datSim.dt ) ;
     datSim.iRun             =   0; 
@@ -54,10 +54,6 @@
     % Original
     datThr.ThrustUpper = 2.5e+5;                                            % Thrust upper bound                       [N]
     datThr.ThrustLower = 1e+5;                                               % Thrust lower bound                       [N]
-    
-    % Change
-    %datThr.ThrustUpper = 10e+5;                                              % Thrust upper bound                       [N]
-    %datThr.ThrustLower = 1e+5;                                             % Thrust lower bound                       [N]
  
 %.. Initial Conditions
 

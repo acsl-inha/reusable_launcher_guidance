@@ -65,14 +65,12 @@
 %.. GCU Module
 
     % Thrust ( Your Guidance Command, L-Frame )
-    if(datSim.Time == 0)
-        temp_t                   =     fix( abs( position(3) / velocity(3)));
-        k                        =     5;                                       % Multiplier nubmer
-        datSim.tf                =     temp_t;
-        N_step                   =     fix(datSim.tf / datSim.dt);
-    else
-        N_step                   =     fix((datSim.tf-datSim.Time)/datSim.dt);
-    end
+    if(datSim
+    temp_t                   =     fix( abs( position(3) / velocity(3)));
+    k                        =     5;                                       % Multiplier nubmer
+    datSim.tf                =     temp_t;
+    N_step                        =     fix(datSim.tf / datSim.dt);
+    
 
     % First Step(Find optimal final time)
         Check = Verify_Infeasible(position,velocity,N_step);                 % Check Inf & Feasible
@@ -98,7 +96,6 @@
                 N_step = N_step_temp;
             end
         end
-        datSim.tf = N_step * datSim.dt ;
         
     % Second Step(Find optimal Thrust)
 

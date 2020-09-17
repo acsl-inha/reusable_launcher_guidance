@@ -21,9 +21,7 @@
     
 %.. Main Loop    
     
-    for i = 1 : datSim.nStep
-    %for i = 1 : datSim.nStep+50
-        
+    for i = 1 : 250
 
         Environment ; 
         
