@@ -89,13 +89,15 @@
                     break
                 end       
             end
+        else
+            
         end 
         
         while(k>0)
             k = k-1;
             N_step_temp = Find_timestep(N_step,k,-1);                            % Subtrack step
             Check = Verify_Infeasible(position,velocity,N_step_temp);
-            if(Check ~= 0)                                                      %If infeasible
+            if(Check == 0)                                                      %If infeasible
                 N_step = N_step_temp;
             end
         end
