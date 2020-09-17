@@ -85,7 +85,7 @@
             while(1)
                 N_step =  Find_timestep(N_step,k,1);                        % Add step 
                 Check = Verify_Infeasible(position,velocity,N_step);
-                if(Check == 1)                                              % Feasible
+                if(Check ~= 0)                                              % Feasible
                     break
                 end       
             end
