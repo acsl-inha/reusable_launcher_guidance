@@ -71,7 +71,8 @@
         datSim.tf                =     temp_t;
         N_step                   =     fix(datSim.tf / datSim.dt);
     else
-        N_step                   =     fix((datSim.tf-datSim.Time)/datSim.dt);
+        k = 3;
+        N_step                   =     fix((datSim.tf)/datSim.dt);
     end
 
     % First Step(Find optimal final time)
@@ -94,7 +95,7 @@
             k = k-1;
             N_step_temp = Find_timestep(N_step,k,-1);                            % Subtrack step
             Check = Verify_Infeasible(position,velocity,N_step_temp);
-            if(Check == 1)
+            if(Check ~= 0)                                                      %If infeasible
                 N_step = N_step_temp;
             end
         end
@@ -102,8 +103,8 @@
         
     % Second Step(Find optimal Thrust)
 
-    [N,E,D]         = 	 Compute_cvx_Euler(position,velocity,N_step);
-    Thr_Cmd         =    [N;E;D];
+    %[N,E,D]         = 	 Compute_cvx_Euler(position,velocity,N_step);
+    Thr_Cmd         =    Check;
 
     %Thr_Cmd          = [0;0;0];
     
@@ -112,11 +113,9 @@
 %.. Exporting Data
 
     outGCU.Thr_Cmd = 	Thr_Cmd ;
+    datSim.tf = datSim.tf - datSim.dt;
     
     
-    %% N_step
-N_step
-
 
         
     

@@ -1,4 +1,4 @@
-function [N,E,D]= Compute_cvx_Euler(position,velocity,N)
+function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
 
 %.. Global and Persistent Variables 
 
@@ -17,7 +17,7 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N)
     v_f                 =   datRlv.Vbllf;                                         % Final velocity in L-Coord.
     Mass                =   outDyn.Mass;
     
-    for t = 1:N+1
+    for t = 1:N_step+1
         z_0(t) = log(Mass - Alpha * datThr.ThrustUpper * (t-1) * delt);
         Mu1(t) = datThr.ThrustLower * exp(-z_0(t));
         Mu2(t) = datThr.ThrustUpper * exp(-z_0(t));
@@ -26,11 +26,11 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N)
  %.. compute cvx    
     cvx_begin
         
-        variable u(3,N+1)
-        variable r(3,N+1)
-        variable v(3,N+1)
-        variable Sigma_var(N+1)
-        variable z(N+1)
+        variable u(3,N_step+1)
+        variable r(3,N_step+1)
+        variable v(3,N_step+1)
+        variable Sigma_var(N_step+1)
+        variable z(N_step+1)
      
         minimize ( -z(end))
         
@@ -40,7 +40,7 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N)
             r(:,end) == r_f
             v(:,end) == v_f
             
-            for t = 1:N
+            for t = 1:N_step
                 
                 r(:,t+1) == r(:,t) + delt * (v(:,t))
                 v(:,t+1) == v(:,t) + delt * (u(:,t)+ [0;0;g_e])
@@ -58,7 +58,7 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N)
             Mu1(end) * ( 1 - (z(end) -z_0(end))) <= Sigma_var(end)
             Sigma_var(:,end) <= Mu2(end) * (1 - (z(end) - z_0(end)))
             z_0(end) <= z(end)
-            z(end) <= log(Mass - Alpha * datThr.ThrustLower * N * delt)
+            z(end) <= log(Mass - Alpha * datThr.ThrustLower * N_step * delt)
 
     cvx_end
     

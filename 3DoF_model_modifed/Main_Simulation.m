@@ -21,7 +21,7 @@
     
 %.. Main Loop    
     
-    for i = 1 : 250
+    for i = 1 : 160
 
         Environment ; 
         
@@ -150,7 +150,5 @@
     xlabel('Time (sec)')
     ylabel('Vz_L(m/s)')
     grid on ; hold on;     
-    
-    
 
 
