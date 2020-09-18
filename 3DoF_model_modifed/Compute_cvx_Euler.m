@@ -1,5 +1,6 @@
 function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
-
+    % Compute optimal thrust and Return initial thrust (NED)
+    
 %.. Global and Persistent Variables 
 
     global  datThr  datSim    datRlv    datUnit
@@ -7,8 +8,7 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
     
 %.. Local Variables
 
-    
-    delt                =   datSim.dt;                                            %
+    delt                =   datSim.dt;                                            % dt
     Alpha               =   1/( datThr.Isp * datUnit.AGRAV);                      % Fuel consumption
     g_e                 =   datUnit.AGRAV;                                        % Earth grvity
     r_0                 =   position;                                             % Initial position in L-Coord.

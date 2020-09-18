@@ -12,6 +12,8 @@
     global      datSim      datUnit     datAero     datThr      datRlv        
     global      outEnv      outAdy      outGCU      outThr      outDyn      outSim 
     
+    
+    %%  Get Initial position & velocity in Landing Coordinate System (NED)
 %.. Importing Data 
 
     Rbii            =       outDyn.Rbii ; 
@@ -61,26 +63,26 @@
     position        =       Rbll ;                                          % L-Coord position
     velocity        =       Vbll ;                                          % L-Coord velocity
     
-    
-%.. GCU Module
+   
+    %% GetThrust in Landing Coordinate System(NED)
+    %.. GCU Module
 
     % Thrust ( Your Guidance Command, L-Frame )
+    
     if(datSim.Time == 0)
-        temp_t                   =     fix( abs( position(3) / velocity(3)));
-        k                        =     5;                                       % Multiplier nubmer
-        datSim.tf                =     temp_t;
-        N_step                   =     fix(datSim.tf / datSim.dt);
+        temp_t              =     fix( abs( position(3) / velocity(3)));
+        k                   =     5;                                        % Multiplier nubmer
+        datSim.tf           =     temp_t;
+        N_step              =     fix(datSim.tf / datSim.dt);
     else
-        k = 3;
-        N_step                   =     fix((datSim.tf)/datSim.dt);
+        %k                   =     3;
+        k                   =     2;
+        N_step              =     fix((datSim.tf)/datSim.dt);
     end
 
-    % First Step(Find optimal final time)
-        Check = Verify_Infeasible(position,velocity,N_step);                 % Check Inf & Feasible
-        
-        
-        
-        
+    % Find optimal final time
+        Check = Verify_Infeasible(position,velocity,N_step);                % Check Inf & Feasible
+
         if(Check == 0)                                                      % Infeasible                                                          
             while(1)
                 N_step =  Find_timestep(N_step,k,1);                        % Add step 
@@ -91,27 +93,22 @@
             end
         else
             
-        end 
+        end
+        
         Thr_Cmd         =    Check;
+        
         while(k>0)
-            
             k = k-1;
-            N_step_temp = Find_timestep(N_step,k,-1);                            % Subtrack step
+            N_step_temp = Find_timestep(N_step,k,-1);                      % Subtrack step
             Check = Verify_Infeasible(position,velocity,N_step_temp);
-            if(Check ~= 0)                                                      %If feasible
+            if(Check ~= 0)                                                  %If feasible
                 N_step = N_step_temp;
                 Thr_Cmd         =    Check;
                 datSim.test = datSim.test +1;
             end
         end
-        datSim.tf = N_step * datSim.dt ;
         
-    % Second Step(Find optimal Thrust)
-
-    %[N,E,D]         = 	 Compute_cvx_Euler(position,velocity,N_step);
-
-    %Thr_Cmd          = [0;0;0];
-    
+        datSim.tf = N_step * datSim.dt ;
 
 
 %.. Exporting Data
@@ -119,8 +116,4 @@
     outGCU.Thr_Cmd = 	Thr_Cmd ;
     datSim.tf = datSim.tf - datSim.dt;
     
-    
-
-        %%
-        Check
     
