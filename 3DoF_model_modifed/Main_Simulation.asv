@@ -152,4 +152,4 @@
     grid on ; hold on;     
 
 %% 
-Sim_Plot
+Simplot
