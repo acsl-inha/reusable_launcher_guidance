@@ -19,7 +19,7 @@ GCU 에서 매 Step 마다 최종 시간을 계산하여 최적의 추력을 얻
 5. Bisection을 이용하여 최적의 최종시간을 구한다.<br/><br/>
 6. 최적의 시간을 최종 시간으로 저장한다.<br/><br/>
 7. 최적의 시간에 대해 추력을 Export한다.<br/><br/>
-8. Main_Simulation에서 **남은 시간이 0** 이거나 **위치가 땅밑으로 갈때** while문을 중단한다.
+8. Main_Simulation에서 **남은 시간이 0** 이거나 **위치가 땅밑에 도달할 때** while문을 중단한다.
 
 ## 결과
 
@@ -41,25 +41,12 @@ GCU 에서 매 Step 마다 최종 시간을 계산하여 최적의 추력을 얻
 
 **Optimal final time:  14.4 sec**
 
-![Aero](https://user-images.githubusercontent.com/62292619/93179222-556fa780-f770-11ea-84f4-20a4b0caa9cb.jpg)
-![Fi_total](https://user-images.githubusercontent.com/62292619/93179228-56a0d480-f770-11ea-9848-1509ff29aad6.jpg)
-![position](https://user-images.githubusercontent.com/62292619/93179229-56a0d480-f770-11ea-8acc-ca2998e20aa3.jpg)
-![Thrust_I-coor](https://user-images.githubusercontent.com/62292619/93179231-57396b00-f770-11ea-8bd8-124b36c19391.jpg)
-![Thrust_L-coor](https://user-images.githubusercontent.com/62292619/93179234-57396b00-f770-11ea-90b7-030863a9b736.jpg)
-![velocity](https://user-images.githubusercontent.com/62292619/93179235-57d20180-f770-11ea-99e4-d2b138cb4550.jpg)
 
-
-
-
-
-
-
-
-
-
-
-
-
+<img src="https://user-images.githubusercontent.com/62292619/93671068-fba60f00-fada-11ea-96ab-b9f1c94b8d98.jpg" width="100%">
+<br/><br/><br/>
+<img src="https://user-images.githubusercontent.com/62292619/93671073-fcd73c00-fada-11ea-890e-77fd21515d67.jpg" width="100%">
+<br/><br/><br/>
+<img src="https://user-images.githubusercontent.com/62292619/93671072-fc3ea580-fada-11ea-98de-a77c90c8e45b.jpg" width="50%"><img src="https://user-images.githubusercontent.com/62292619/93671071-fc3ea580-fada-11ea-9c01-c8552938896d.jpg" width="50%"><img src="https://user-images.githubusercontent.com/62292619/93671067-fa74e200-fada-11ea-97f7-7262322ad4c3.jpg" width="50%">
 
 
 

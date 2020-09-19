@@ -67,7 +67,7 @@ toc
     plot(outSim.Time(:,1),outSim.Thr_x_Aero(:,1))
     ylabel('N')
     grid on ; hold on; 
-    title('Aero', 'FontSize', 12)
+    title('Aerodynamics', 'FontSize', 12)
     subplot(3,1,2)
     plot(outSim.Time(:,1),outSim.Thr_y_Aero(:,1))
     ylabel('E')
@@ -124,7 +124,7 @@ toc
     plot( outSim.Time(:,1), outSim.Fitot_x(:,1), 'b', 'linewidth', 1.5 ) 
     ylabel('X_L(m)')
     grid on ; hold on; 
-    title('Fi_total', 'FontSize', 12)
+    title('Total Force', 'FontSize', 12)
     subplot(3,1,2)  
     plot( outSim.Time(:,1), outSim.Fitot_y(:,1), 'b', 'linewidth', 1.5 ) 
     ylabel('Y_L(m)')
