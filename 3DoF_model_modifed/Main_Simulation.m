@@ -6,7 +6,7 @@
 %                               - Modified by C. H. Lee, 2020. 07. 19.    %
 %                                                                         %
 %/////////////////////////////////////////////////////////////////////////%
-
+tic
 %.. Matlab Initialization 
 
     clc;        clear all ;         close all ; 
@@ -28,27 +28,29 @@
         Aerodynamics ; 
         
         GCU ;
-        
-        Check = isnan(Thr_Cmd);
-        if(Check ==[1;1;1])
+        if((datSim.tf == 0))
             break
         end
         
     	Thrust ; 
         
         Dynamics ; 
+        if(outDyn.Rbll(3) >0)
+            break
+        end
 
     	SaveData ; 
         
         Integration; 
         
         datSim.iRun
+
                                 
     end
     
     
     
-    
+toc    
     
 %.. Plot 
     
@@ -152,4 +154,4 @@
     grid on ; hold on;     
 
 %% 
-Sim_Plot
+Sim_Plot ; 
