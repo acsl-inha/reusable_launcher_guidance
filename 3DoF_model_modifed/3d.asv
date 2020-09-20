@@ -1,0 +1,20 @@
+global outSim
+
+ 
+curve = animatedline('LineWidth',2);
+set(gca,'XLim',[0 200],'YLim',[0 600],'ZLim',[0 600]);
+view(43,24);
+hold on;
+grid on;
+ for i = 1: length(outSim.X_L)
+     addpoints(curve,outSim.X_L(i),outSim.Y_L(i),-outSim.Z_L(i));
+     head = scatter3(outSim.X_L(i),outSim.Y_L(i),-outSim.Z_L(i),'filled','MarkerFaceColor','b','MarkerEdgeColor','b');
+     k =quiver3(outSim.X_L(i),outSim.Y_L(i),-outSim.Z_L(i),outSim.Thr_x_L(i) * 0.001,outSim.Thr_y_L(i) * 0.1,-outSim.Thr_z_L(i) * 0.1);
+     drawnow
+     pause(0.05);
+     delete(k);
+     delete(head);
+
+ end
+ 
+ 

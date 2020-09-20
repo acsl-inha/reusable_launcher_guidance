@@ -40,15 +40,26 @@ GCU 에서 매 Step 마다 최종 시간을 계산하여 최적의 추력을 얻
 |dt| 0.1|[s]|
 
 **Optimal final time:  14.4 sec**
+<br/>
+<br/>
+<br/>
 
-
-<img src="https://user-images.githubusercontent.com/62292619/93671068-fba60f00-fada-11ea-96ab-b9f1c94b8d98.jpg" width="100%">
+ ### image 
+ 
+<img src="https://user-images.githubusercontent.com/62292619/93671068-fba60f00-fada-11ea-96ab-b9f1c94b8d98.jpg" width="80%">
 <br/><br/><br/>
-<img src="https://user-images.githubusercontent.com/62292619/93671073-fcd73c00-fada-11ea-890e-77fd21515d67.jpg" width="100%">
+<img src="https://user-images.githubusercontent.com/62292619/93671073-fcd73c00-fada-11ea-890e-77fd21515d67.jpg" width="80%">
 <br/><br/><br/>
-<img src="https://user-images.githubusercontent.com/62292619/93671072-fc3ea580-fada-11ea-98de-a77c90c8e45b.jpg" width="50%"><img src="https://user-images.githubusercontent.com/62292619/93671071-fc3ea580-fada-11ea-9c01-c8552938896d.jpg" width="50%"><img src="https://user-images.githubusercontent.com/62292619/93671067-fa74e200-fada-11ea-97f7-7262322ad4c3.jpg" width="50%">
+<img src="https://user-images.githubusercontent.com/62292619/93671072-fc3ea580-fada-11ea-98de-a77c90c8e45b.jpg" width="80%"><img src="https://user-images.githubusercontent.com/62292619/93671071-fc3ea580-fada-11ea-9c01-c8552938896d.jpg" width="80%"><img src="https://user-images.githubusercontent.com/62292619/93671067-fa74e200-fada-11ea-97f7-7262322ad4c3.jpg" width="80%">
+<br/>
+<br/>
+<br/>
 
+###  Video
 
+>화살표의 방향은 **추력의 방향**이고 화살표의 크기는 **추력의 크기**를 의미함.
+
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/62292619/93695147-85db8b00-fb4e-11ea-83a1-f1d1f49578d7.gif)
 
 
 # 참고문헌
