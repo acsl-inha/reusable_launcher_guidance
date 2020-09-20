@@ -110,7 +110,6 @@
                 if(Check ~= 0)                                                  %If feasible
                     N_step = N_step_temp;
                     Thr_Cmd         =    Check;
-                    datSim.test = datSim.test +1;
                 end
             end
         

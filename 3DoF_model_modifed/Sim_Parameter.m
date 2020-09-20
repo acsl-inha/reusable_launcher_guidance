@@ -76,9 +76,5 @@
     datRlv.Rbllf        	=   [ 0.0 ; 0.0 ; 0.0 ] ;                       % Final Body Position w.r.t. Landing Point(L) in L-Coord.                                         
     datRlv.Vbllf            =   [ 0.0 ; 0.0 ; 0.0 ] ;                       % Final Body Velocity w.r.t. Landing Point(L) in L-Coord. 
     
-    % test something
-    
-    datSim.test = 0;
  
-
 
