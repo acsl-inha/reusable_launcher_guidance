@@ -6,20 +6,18 @@
 ## 개요
 
 
-GCU 에서 매 Step 마다 최종 시간을 계산하여 최적의 추력을 얻는 알고리즘을 추가하였음.
+GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻는 알고리즘을 추가하였음.
 
 
 **Algorithm**
 
 
-1.  NED 좌표계에서의 초기 위치와 초기 속도를 구한다.<br/><br/>
-2. 최종시간을 정하기 위해서  NED 기준 D축의 위치와 속도를 나눈 절대값을 초기값으로 둔다. t_f = position/velocity<br/><br/>
-3. t_f 으로 미리 짜놓은 cvx 함수를 실행한다.<br/><br/>
-4. 만약 결과값이 Infeasible하다면 <br/><br/>
-5. Bisection을 이용하여 최적의 최종시간을 구한다.<br/><br/>
-6. 최적의 시간을 최종 시간으로 저장한다.<br/><br/>
-7. 최적의 시간에 대해 추력을 Export한다.<br/><br/>
-8. Main_Simulation에서 **남은 시간이 0** 이거나 **위치가 땅밑에 도달할 때** while문을 중단한다.
+1.  NED 좌표계에서의 초기 위치와 초기 속도를 얻는다.<br/><br/>
+2. 최적의 비행 시간을 정하기 위해서  NED 기준 D축의 초기위치 ([0 500 -500])와 초기속도([50 0 50])를 나눈 절대값을 초기값으로 둔다.  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t_f = | position/velocity |<br/><br/>
+4. 초기값 t_f 으로 Compute_cvx_Euler 함수와 Bisection을 이용하여 최적의 비행시간을 구한다.<br/><br/>
+5. 최적의 시간을 최종 시간으로 저장한후 Compute_cvx_Euler를 이용하여 얻은 추력을 Export 한다.<br/><br/>
+6. 최종 위치에 근접 했을 때  속력을 줄이는 cvx함수로 변경한다.
+> Main_Simulation에서 **남은 시간이 0** 이거나 **비행체가 지면 밑에 위치 할 때** while문을 중단한다.
 
 ## 결과
 
@@ -39,7 +37,9 @@ GCU 에서 매 Step 마다 최종 시간을 계산하여 최적의 추력을 얻
 |Minimum Thrust|100,000|[N]|
 |dt| 0.1|[s]|
 
-**Optimal final time:  14.4 sec**
+<br/>
+
+**Optimal final time:  14.3 sec**
 <br/>
 <br/>
 <br/>
@@ -50,8 +50,13 @@ GCU 에서 매 Step 마다 최종 시간을 계산하여 최적의 추력을 얻
 <br/><br/><br/>
 <img src="https://user-images.githubusercontent.com/62292619/93671073-fcd73c00-fada-11ea-890e-77fd21515d67.jpg" width="80%">
 <br/><br/><br/>
-<img src="https://user-images.githubusercontent.com/62292619/93671072-fc3ea580-fada-11ea-98de-a77c90c8e45b.jpg" width="80%"><img src="https://user-images.githubusercontent.com/62292619/93671071-fc3ea580-fada-11ea-9c01-c8552938896d.jpg" width="80%"><img src="https://user-images.githubusercontent.com/62292619/93671067-fa74e200-fada-11ea-97f7-7262322ad4c3.jpg" width="80%">
+<img src="https://user-images.githubusercontent.com/62292619/93707801-75d2a400-fb6c-11ea-82be-cbccf4e5abb3.jpg" width="80%">
+<img src="https://user-images.githubusercontent.com/62292619/93707803-779c6780-fb6c-11ea-9af7-c47272683c59.jpg" width="80%">
+<img src="https://user-images.githubusercontent.com/62292619/93671067-fa74e200-fada-11ea-97f7-7262322ad4c3.jpg" width="80%">
 <br/>
+<br/>
+<br/>
+
 <br/>
 <br/>
 

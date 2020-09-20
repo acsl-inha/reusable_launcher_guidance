@@ -69,8 +69,10 @@
 
     % Thrust ( Your Guidance Command, L-Frame )
     if(abs(position(3))<0.5)
-        outGCU.Thr_Cmd = 	[0;0;0] ;
-        datSim.tf = datSim.tf - datSim.dt;
+        [N,E,D]             =       Compute_cvx_Euler_Velocity_zero(position,velocity,N_step);
+        Thr_Cmd             =       [N;E;D];
+        outGCU.Thr_Cmd      =       Thr_Cmd ;
+        datSim.tf           =       datSim.tf - datSim.dt;
         
     else
         

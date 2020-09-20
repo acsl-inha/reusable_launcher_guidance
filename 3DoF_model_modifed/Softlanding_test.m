@@ -55,17 +55,12 @@
   
 
     %% test
-position
-velocity
-datSim.Time
-outDyn.Mass
-datSim.tf - datSim.Time
-datSim.dt 
+    
     %%
 %.. Local Variables
 
-    t_f                 =   datSim.tf - datSim.Time ;                                                 % Final time
-    delt                =   100 * datSim.dt;                                                                 %
+    t_f                 =   datSim.tf ;                                                 % Final time
+    delt                =   datSim.dt;                                                                 %
     N                   =   fix(t_f / delt);                                                           % Step size
     Alpha               =   1/( datThr.Isp * datUnit.AGRAV);                                           % Fuel consumption
     g_e                 =   datUnit.AGRAV;                                                             % Earth grvity
@@ -98,7 +93,7 @@ datSim.dt
         subject to
             r(:,1) == r_0
             v(:,1) == v_0
-            r(:,end) == r_f
+            %r(:,end) == r_f
             v(:,end) == v_f
             
             for t = 1:N
@@ -129,6 +124,7 @@ for i = 1:N+1
     Thrust(:,i) = u(:,i) * exp(z(i));
 end
 %%
+N
 
 %% plotting
 

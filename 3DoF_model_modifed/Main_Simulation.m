@@ -59,7 +59,7 @@ toc
     
 %% test
 
-    
+    outDyn.Rbll(3)
      %% plotting
     
     figure(1)
