@@ -75,6 +75,8 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/62292619/93695147-85db8b00-fb4e-11ea-83a1-f1d1f49578d7.gif)
 
 
+<br/><br/>
+
 # 참고문헌
 
  > Michael Szmuk, Behcet Aclkmese, Andrew W. Berning Jr., “Successive 
