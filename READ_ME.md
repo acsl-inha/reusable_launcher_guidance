@@ -2,7 +2,7 @@
 
 # 3Dof_model_modified
 <br/><br/>
-> code에서 Main_simulation, GCU, Simparameter 파일만 수정하였고 <br/>
+> code에서 Main_simulation, GCU, Simparameter 파일을 수정하였고 <br/>
 > Compute_cvx_Euler , Compute_cvx_Euler_velocity_zero, Find_timestep, Verify_infeasible함수가 추가되었음.
 
 <br/><br/>
