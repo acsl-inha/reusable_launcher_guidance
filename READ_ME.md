@@ -6,7 +6,7 @@
 > Compute_cvx_Euler , Compute_cvx_Euler_velocity_zero, Find_timestep, Verify_infeasible함수가 추가되었음.
 <br/><br/>
 
-
+<br/>
 ## 개요
 
 
@@ -22,7 +22,7 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 5. 최적의 시간을 최종 시간으로 저장한후 Compute_cvx_Euler를 이용하여 얻은 추력을 Export 한다.<br/><br/>
 6. 최종 위치에 근접 했을 때  속력을 줄이는 cvx함수로 변경한다.
 > Main_Simulation에서 **남은 시간이 0** 이거나 **비행체가 지면 밑에 위치 할 때** while문을 중단한다.
-
+<br/><br/>
 ## 결과
 
 >모든 Parameter 는 참고문헌 [1]를 참고하였음. 
