@@ -23,7 +23,7 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 
 <img src="https://latex.codecogs.com/gif.latex? \| u_t\|" > 
 
-![equation](http://latex.codecogs.com/gif.latex?O_t)
+![equation](http://latex.codecogs.com/gif.latex?\text{minimize}\quad \| u_t\|)
 
 <br/><br/>
 
