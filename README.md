@@ -25,7 +25,7 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 
 <br/><br/>
 
- 
+ ---
  
 **function** : Compute_cvx_Euler
  > 위 코드를 실행하기 위해서는 http://cvxr.com/cvx/ 에서 CVX module 설치가 필요함.
@@ -49,8 +49,7 @@ Constraint  = []
 6.  &nbsp;**Return** Thrust.
 
  
- 
- 위 함수에서는 최적의 시간이 주어져 있을 때 초기위치에서 최종위치까지 최적의 추력을 사용하여 비행경로를 계산하여 초기 추력을 return 값으로 반환한다.
+ ---
 
  
  <br/><br/>
