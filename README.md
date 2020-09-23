@@ -33,7 +33,7 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 
 **initialization** : Objective = []<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constraint  = []
-
+<br/><br/>
 
 1.  &nbsp;Objective&nbsp;&nbsp; +=&nbsp;&nbsp; Fuel mass
 2.  &nbsp;Constarint &nbsp;&nbsp;+= &nbsp;&nbsp; initial position,initial velocity, final position, final velocity
