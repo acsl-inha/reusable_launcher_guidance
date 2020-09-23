@@ -35,13 +35,16 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constraint  = []
 <br/><br/>
 
-1  &nbsp; Objective&nbsp;&nbsp; +=&nbsp;&nbsp; Fuel mass <br/>
-2  &nbsp; Constarint &nbsp;&nbsp;+= &nbsp;&nbsp; initial position,initial velocity, final position, final velocity <br/>
-3  &nbsp; Constarint &nbsp;&nbsp;+= &nbsp;&nbsp;( lower bound on thrust magnitude < thrust < upper bound on thrust magnitude )  <br/>
-4  &nbsp; Constraint &nbsp;&nbsp;+= &nbsp;&nbsp;translation dynamics <br/>
-5  &nbsp; Thrust &nbsp;&nbsp;= &nbsp;&nbsp;CVX(objective,constraint) <br/>
-6  &nbsp; **Return** Thrust. <br/>
+**begin function** 
 
+&nbsp;&nbsp;&nbsp;&nbsp; 1  &nbsp; Objective&nbsp;&nbsp; +=&nbsp;&nbsp; Fuel mass <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; 2  &nbsp; Constarint &nbsp;&nbsp;+= &nbsp;&nbsp; initial position,initial velocity, final position, final velocity <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; 3  &nbsp; Constarint &nbsp;&nbsp;+= &nbsp;&nbsp;( lower bound on thrust magnitude < thrust < upper bound on thrust magnitude )  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; 4  &nbsp; Constraint &nbsp;&nbsp;+= &nbsp;&nbsp;translation dynamics <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; 5  &nbsp; Thrust &nbsp;&nbsp;= &nbsp;&nbsp;CVX(objective,constraint) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; 6  &nbsp; **Return** Thrust. <br/>
+
+**end function**
   > 위 코드를 실행하기 위해서는 http://cvxr.com/cvx/ 에서 CVX module 설치가 필요함.
  ---
 
