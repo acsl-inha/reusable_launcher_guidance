@@ -110,3 +110,57 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 Convexification for Fuel-Optimal Powered Landing With Aerodynamic Drag and 
 Non-Convex Constraints,”American Institute of Aeronautics and Astronautics
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***hi***
+
+---
+
+4. &nbsp; ***else***
+
+---
+
+**begin function** 
+1  &nbsp; Objective&nbsp;&nbsp; +=&nbsp;&nbsp; Fuel mass <br/>
+2  &nbsp; Constarint &nbsp;&nbsp;+= &nbsp;&nbsp; initial position,initial velocity, final position, final velocity <br/>
+3  &nbsp; Constarint &nbsp;&nbsp;+= &nbsp;&nbsp;( lower bound on thrust magnitude < thrust < upper bound on thrust magnitude )  <br/>
+4  &nbsp; Constraint &nbsp;&nbsp;+= &nbsp;&nbsp;translation dynamics <br/>
+5  &nbsp; Thrust &nbsp;&nbsp;= &nbsp;&nbsp;CVX(objective,constraint) <br/>
+6  &nbsp; **Return** Thrust. <br/>
+**end function**
+
+---
+
+## [gbvgasdfsdf]()
+
+**asdfsaddf**
+
+asdfsdf
+$$
+\frac{2}{4}
+$$
+<u>asdfasdf</u>
+
+
+
+
+
+ssss              asdf
+
+
+
