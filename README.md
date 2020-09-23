@@ -8,6 +8,7 @@
 
 ## 개요
 
+<img src="https://latex.codecogs.com/gif.latex? \text {minimize} \quad \sum_{t=0}^{T}\| u_t\| " /> 
 
 GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻는 알고리즘을 추가하였음.
 
@@ -24,6 +25,9 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 
 
 <br/><br/>
+
+<img src="https://latex.codecogs.com/gif.latex? \text {minimize} \quad \sum_{t=0}^{T}\| u_t\| " /> 
+
 
  ---
  
