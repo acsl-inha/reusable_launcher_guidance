@@ -21,9 +21,9 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 6. 최종 위치에 근접 했을 때  속력을 줄이는 cvx함수로 변경한다.
 > Main_Simulation에서 **남은 시간이 0** 이거나 **비행체가 지면 아래에 위치 할 때** while문을 중단한다.
 
-<img src="https://latex.codecogs.com/gif.latex?\|u_t\|" > 
+<img src="https://latex.codecogs.com/gif.latex?\text{minimize}\quad\sum_{t=0}^T\|u_t\|" > 
 
-![equation](http://latex.codecogs.com/gif.latex?\text{minimize}\quad\|u_t\|)
+![equation](http://latex.codecogs.com/gif.latex?\text{minimize}\quad\sum_{t=0}^T\|u_t\|)
 
 <br/><br/>
 
