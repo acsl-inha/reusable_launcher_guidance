@@ -24,7 +24,7 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 
 
 <br/><br/>
-## Compute cvx Euler
+
  
  
 **function** : Compute_cvx_Euler
@@ -35,7 +35,9 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 &nbsp;&nbsp;&nbsp;**output** : next step thrust value 
 
 **initialization**
+
 Objective = []
+
 Constraint  = []
 
 
