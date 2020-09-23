@@ -40,16 +40,16 @@ Objective = []
 Constraint  = []
 
 
-1.  &nbsp;Objective&nbsp;&nbsp; +=&nbsp;&nbsp; Fuel mass
-2.  &nbsp;Constarint &nbsp;&nbsp;+= &nbsp;&nbsp; initial position,initial velocity, final position, final velocity
-3.  &nbsp;Constarint &nbsp;&nbsp;+= &nbsp;&nbsp;( lower bound on thrust magnitude < thrust < upper bound on thrust magnitude ) 
-4.  &nbsp;Constraint &nbsp;&nbsp;+= &nbsp;&nbsp;translation dynamics
-5.  &nbsp;Thrust &nbsp;&nbsp;= &nbsp;&nbsp;CVX(objective,constraint)
-6.  &nbsp;**Return** Thrust.
+&nbsp;&nbsp;1.  &nbsp;Objective&nbsp;&nbsp; +=&nbsp;&nbsp; Fuel mass
+&nbsp;&nbsp;2.  &nbsp;Constarint &nbsp;&nbsp;+= &nbsp;&nbsp; initial position,initial velocity, final position, final velocity
+&nbsp;&nbsp;3.  &nbsp;Constarint &nbsp;&nbsp;+= &nbsp;&nbsp;( lower bound on thrust magnitude < thrust < upper bound on thrust magnitude ) 
+&nbsp;&nbsp;4.  &nbsp;Constraint &nbsp;&nbsp;+= &nbsp;&nbsp;translation dynamics
+&nbsp;&nbsp;5.  &nbsp;Thrust &nbsp;&nbsp;= &nbsp;&nbsp;CVX(objective,constraint)
+&nbsp;&nbsp;6.  &nbsp;**Return** Thrust.
 
   > 위 코드를 실행하기 위해서는 http://cvxr.com/cvx/ 에서 CVX module 설치가 필요함.
  ---
-asdfasdf $\qquad$$\qquad$ awdfasdf $\qquad$$\qquad$
+
  
  <br/><br/>
  
