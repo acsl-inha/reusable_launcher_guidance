@@ -49,6 +49,12 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
  <br/><br/>
  
 
+1. $\qquad$$\qquad$ &nbsp;&nbsp;***if***&nbsp;&nbsp; Altitude < 0.5 m &nbsp;&nbsp;
+2. $\qquad$$\qquad$$\qquad$$\qquad$ Thrust = Compute_cvx
+3. $\qquad$$\qquad$$\qquad$$\qquad$  Current time = Current time - dt
+4.  $\qquad$$\qquad$&nbsp; ***else***
+5. $\qquad$$\qquad$$\qquad$$\qquad$ ***if***  &nbsp;Time = 0 
+
 ## 결과
 
 >모든 Parameter 는 참고문헌 [1]를 참고하였음. 
