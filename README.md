@@ -112,5 +112,11 @@ Non-Convex Constraints,”American Institute of Aeronautics and Astronautics
 
 
 
-
+$$
+					
+				
+				
+				xxxxxxxxxx \frac{2}{4}
+    $$
+					
 
