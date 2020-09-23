@@ -23,7 +23,7 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 
 <img src="https://latex.codecogs.com/gif.latex? \| u_t\|" > 
 
-![equation](http://latex.codecogs.com/gif.latex?O_t%3D%5Ctext%20%7B%20Onset%20event%20at%20time%20bin%20%7D%20t)
+![equation](http://latex.codecogs.com/gif.latex?O_t)
 
 <br/><br/>
 
