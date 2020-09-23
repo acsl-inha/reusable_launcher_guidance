@@ -27,6 +27,14 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 \text{subject to}\quad&\|u\|
 \end{aligned}" > 
 
+![\begin{aligned}
+\text{minimize}\quad&\sum_{t=0}^T\|u_t\|\\
+\text{subject to}\quad&\|u\|
+\end{aligned}](https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+%5Cbegin%7Baligned%7D%0A%5Ctext%7Bminimize%7D%5Cquad%26%5Csum_%7Bt%3D0%7D%5ET%5C%7Cu_t%5C%7C%5C%5C%0A%5Ctext%7Bsubject+to%7D%5Cquad%26%5C%7Cu%5C%7C%0A%5Cend%7Baligned%7D)
+
+
+
+
 <br/><br/>
 
  ---
