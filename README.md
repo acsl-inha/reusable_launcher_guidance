@@ -100,12 +100,6 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 
 <br/><br/>
 
-```
-hi 	d		d	d	d	d	df
-asdfasdfasdf
-
-
-```
 
 
 # 참고문헌
