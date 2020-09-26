@@ -69,51 +69,46 @@
 
     % Thrust ( Your Guidance Command, L-Frame )
     if(abs(position(3))<0.5)
-        [N,E,D]             =       Compute_cvx_Euler_Velocity_zero(position,velocity,N_step);
+        [N,E,D]             =       Compute_cvx_Euler_Velocity_zero(position,velocity,N_upper);
         Thr_Cmd             =       [N;E;D];
         outGCU.Thr_Cmd      =       Thr_Cmd ;
         datSim.tf           =       datSim.tf - datSim.dt;
         
     else
         
-        if(datSim.Time == 0)
+
             temp_t              =     fix( abs( position(3) / velocity(3)));
-            k                   =     5;                                        % Multiplier nubmer
-            datSim.tf           =     temp_t;
-            N_step              =     fix(datSim.tf / datSim.dt);
-        else
-            k                   =     3;
-            N_step              =     fix((datSim.tf)/datSim.dt);
-        end
+            N_upper             =     fix(datSim.tf / datSim.dt);
+            N_lower             =     0;
+            Epsilon             =     1;
+            
+
 
         % Find optimal final time
-            Check = Verify_Infeasible(position,velocity,N_step);                % Check Inf & Feasible
+            Check = Verify_Infeasible(position,velocity,N_upper);               % Check Inf & Feasible
 
-            if(Check == 0)                                                      % Infeasible                                                          
+            if(Check == 0)                                                      % Infeasible
                 while(1)
-                    N_step =  Find_timestep(N_step,k,1);                        % Add step 
-                    Check = Verify_Infeasible(position,velocity,N_step);
+                    N_lower =  N_upper;
+                    N_upper =  N_upper + N_upper;                               % Add Step
+                    Check = Verify_Infeasible(position,velocity,N_upper);
                     if(Check ~= 0)                                              % Feasible
                         break
                     end       
                 end
-            else
-            
             end
-        
-            Thr_Cmd         =    Check;
-        
-            while(k>0)
-                k = k-1;
-                N_step_temp = Find_timestep(N_step,k,-1);                      % Subtrack step
-                Check = Verify_Infeasible(position,velocity,N_step_temp);
-                if(Check ~= 0)                                                  %If feasible
-                    N_step = N_step_temp;
-                    Thr_Cmd         =    Check;
+
+            while(N_upper - N_lower > Epsilon)
+                S     =     fix( 0.5 * ( N_upper + N_lower));
+                Check =     Verify_Infeasible(position,velocity,S);
+                if(Check == 0)
+                    N_lower  = S;
+                else
+                    N_upper  = S;
                 end
             end
         
-            datSim.tf = N_step * datSim.dt ;
+            Thr_Cmd       = Check;
 
 
     %.. Exporting Data
