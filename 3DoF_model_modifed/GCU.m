@@ -78,7 +78,7 @@
         
 
             temp_t              =     fix( abs( position(3) / velocity(3)));
-            N_upper             =     fix(datSim.tf / datSim.dt);
+            N_upper             =     temp_t;
             N_lower             =     0;
             Epsilon             =     1;
             
@@ -98,6 +98,8 @@
                 end
             end
 
+            Thr_Cmd  = Check;
+            
             while(N_upper - N_lower > Epsilon)
                 S     =     fix( 0.5 * ( N_upper + N_lower));
                 Check =     Verify_Infeasible(position,velocity,S);
@@ -105,10 +107,10 @@
                     N_lower  = S;
                 else
                     N_upper  = S;
+                    Thr_Cmd  = Check;
                 end
             end
         
-            Thr_Cmd       = Check;
 
 
     %.. Exporting Data
@@ -117,5 +119,7 @@
         datSim.tf = datSim.tf - datSim.dt;
     
     end
-    
+    %%
+   Thr_Cmd
+
 
