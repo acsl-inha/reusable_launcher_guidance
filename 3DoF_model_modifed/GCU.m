@@ -68,7 +68,7 @@
     %.. GCU Module
 
     % Thrust ( Your Guidance Command, L-Frame )
-    if(abs(position(3))<0.5)
+    if(abs(position(3))<2)
         [N,E,D]             =       Compute_cvx_Euler_Velocity_zero(position,velocity,N_upper);
         Thr_Cmd             =       [N;E;D];
         outGCU.Thr_Cmd      =       Thr_Cmd ;
@@ -77,8 +77,7 @@
     else
         
 
-            temp_t              =     fix( abs( position(3) / velocity(3)));
-            N_upper             =     temp_t;
+            N_upper             =     fix(abs( position(3) / velocity(3))/datSim.dt);
             N_lower             =     0;
             Epsilon             =     1;
             
@@ -99,7 +98,7 @@
             end
 
             Thr_Cmd  = Check;
-            
+            datSim.tf = N_upper * datSim.dt;
             while(N_upper - N_lower > Epsilon)
                 S     =     fix( 0.5 * ( N_upper + N_lower));
                 Check =     Verify_Infeasible(position,velocity,S);
@@ -108,6 +107,7 @@
                 else
                     N_upper  = S;
                     Thr_Cmd  = Check;
+                    datSim.tf = N_upper * datSim.dt;
                 end
             end
         
@@ -116,10 +116,9 @@
     %.. Exporting Data
 
         outGCU.Thr_Cmd = 	Thr_Cmd ;
-        datSim.tf = datSim.tf - datSim.dt;
+        
     
     end
-    %%
-   Thr_Cmd
 
-
+%%
+N_lower
