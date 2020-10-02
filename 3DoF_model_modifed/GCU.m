@@ -88,8 +88,8 @@
 
             if(Check == 0)                                                      % Infeasible
                 while(1)
-                    N_lower =  N_upper;
-                    N_upper =  N_upper + N_upper;                               % Add Step
+                    N_lower =  N_upper;                                         % Change Lower bound
+                    N_upper =  N_upper + N_upper;                               % Change Upper bound
                     Check = Verify_Infeasible(position,velocity,N_upper);
                     if(Check ~= 0)                                              % Feasible
                         break
@@ -102,11 +102,11 @@
             while(N_upper - N_lower > Epsilon)
                 S     =     fix( 0.5 * ( N_upper + N_lower));
                 Check =     Verify_Infeasible(position,velocity,S);
-                if(Check == 0)
-                    N_lower  = S;
+                if(Check == 0)                                                
+                    N_lower  = S;                                             % Infeasible --> Change Lower bound
                 else
-                    N_upper  = S;
-                    Thr_Cmd  = Check;
+                    N_upper  = S;                                             % Feasible  --> Change Upper bound
+                    Thr_Cmd  = Check;                                         
                     datSim.tf = N_upper * datSim.dt;
                 end
             end
