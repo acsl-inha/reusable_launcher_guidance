@@ -21,7 +21,7 @@
     Initialization ;  
     
 %.. Main Loop    
-    
+    tic
     while(1)
 
         Environment ; 
@@ -49,7 +49,7 @@
                                 
     end
     
-    
+    toc
     
     
 %.. Plot 
