@@ -46,24 +46,8 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 **end function**<br/>
   > 위 코드를 실행하기 위해서는 http://cvxr.com/cvx/ 에서 CVX module 설치가 필요함.
  ---
-**Bisection method(at GCU)**<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;**if**&nbsp;Altitude < 2m<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thrust = Compute_cvx_Euler_Velocity_zero(position,velocity,Nstep) 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Final time = Final time - dt<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;**else**<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Upper bound (nstep) = z-axis position / z-axis velocity
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lower bound (nstep) = 0
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Epsilon = 1 &nbsp;&nbsp;(stopping criterion)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**if** Compute cvx_Euler(position,velocity,Upper bound)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**while** True **do**<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lower bound = Upper bound
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Upper bound = Upper bound +Upper bound<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**if** Compute cvx_Euler(position,velocity,Upper bound)  is feasible
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**break**<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**end**<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**while** Upper bound - Lower bound > Epsilon **do**
 
----
+
  
  <br/><br/>
  
