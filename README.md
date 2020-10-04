@@ -48,7 +48,7 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 
 <br/>
 
-  > 위 코드를 실행하기 위해서는 http://cvxr.com/cvx/ 에서 CVX module 설치가 필요함.
+  > 위 코드를 실행하기 위해서는 http://cvxr.com/cvx/ 에서 CVX module 설치가 필요함.<br/>
  > Compute_cvx_Euler_zero 는 본 함수에서 제한조건 final position만 제거함으로써 감속을 중요시함.
 
 <br/>
