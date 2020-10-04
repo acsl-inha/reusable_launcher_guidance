@@ -28,7 +28,7 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 ![Cvx](https://user-images.githubusercontent.com/62292619/95008746-9c5a0a00-0657-11eb-85f3-28e580db1140.png)
 위 식을 CVX module을 이용하여 계산을 한 것이 아래의 Compute_cvx_Euler function이다.
 
- ---
+---
  
 **function** : Compute_cvx_Euler <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **input** :  Position,Velocity,Nstep<br/>
