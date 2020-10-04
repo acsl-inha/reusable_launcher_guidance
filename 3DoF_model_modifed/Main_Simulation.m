@@ -57,7 +57,7 @@
      Sim_Plot ; 
 %%
      %% plotting
-    
+    close all;
     figure(1)
     subplot(3,1,1)
     plot(outSim.Time(:,1),outSim.Thr_x_Aero(:,1))
@@ -149,6 +149,3 @@
     ylabel('Vz_L(m/s)')
     grid on ; hold on;     
     
-    
-    %%
-    Sim_Plot;
