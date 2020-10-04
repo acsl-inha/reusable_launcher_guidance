@@ -30,6 +30,7 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 
 
 ## pseudo code
+<br/>
 **function** : Compute_cvx_Euler <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **input** :  Position,Velocity,Nstep<br/>
 &nbsp;&nbsp;&nbsp; **output** : next step thrust value <br/>
