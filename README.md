@@ -95,8 +95,8 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**elseif** Compute_cvx_Euler(position,velocity,Temp_N) is  feasible<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Upper bound = Temp_N<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**end if**<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;**end while**
-
+&nbsp;&nbsp;&nbsp;&nbsp;**end while**<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;**end if**<br/>
 
 
 
