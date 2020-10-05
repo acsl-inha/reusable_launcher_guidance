@@ -76,7 +76,7 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thrust = Compute_cvx_Euler_Velocity_zero(position,velocity,Nstep) <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Final time = Final time - dt<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;**else**<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Upper bound (nstep) = z-axis position / z-axis velocity<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Upper bound (nstep) = (z-axis position / z-axis velocity) / dt<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lower bound (nstep) = 0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Epsilon = 1 &nbsp;&nbsp;(stopping criterion)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**if** Compute cvx_Euler(position,velocity,Upper bound) is infeasible<br/><br/>
