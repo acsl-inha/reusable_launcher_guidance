@@ -15,8 +15,8 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 
 
 1. NED 좌표계에서의 초기 위치와 초기 속도를 얻는다.<br/><br/>
-2. 최적의 비행 시간을 정하기 위해서  NED 기준 D축의 초기위치 와 초기속도를 나눈 절대값을 초기값으로 둔다. <br/>  t_f = | altitude position/altitude velocity |<br/><br/>
-4. 초기값 t_f 으로 Compute_cvx_Euler 함수와 Bisection을 이용하여 최적의 비행시간을 구한다.<br/><br/>
+2. 최적의 비행 시간을 구하기 위해서  NED 기준 D축의 위치와 속도를 나눈 절대값을 초기값으로 둔다. <br/>  t_f = | altitude position/altitude velocity |<br/><br/>
+4. 초기값 t_f 으로 Compute_cvx_Euler 함수와 Bisection method를 이용하여 최적의 비행시간을 구한다.<br/><br/>
 5. 최적의 시간을 최종 시간으로 저장한후 Compute_cvx_Euler를 이용하여 얻은 추력을 Export 한다.<br/><br/>
 6. 최종 위치에 근접 했을 때  속력을 줄이는 Compute_cvx_Euler_zero 로 변경하여 추력을 Export한다.
 > Main_Simulation에서 **남은 시간이 0** 이거나 **비행체가 지면 아래에 위치 할 때** while문을 중단한다.
