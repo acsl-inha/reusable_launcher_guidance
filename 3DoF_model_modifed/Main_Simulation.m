@@ -49,8 +49,13 @@
                                 
     end
     
+<<<<<<< HEAD
     
     toc
+=======
+    toc
+    
+>>>>>>> master
     
 %.. Plot 
     
