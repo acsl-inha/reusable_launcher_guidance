@@ -32,7 +32,8 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
         variable Sigma_var(N_step+1)
         variable z(N_step+1)
      
-        minimize ( -z(end))
+        %minimize ( -z(end))
+        minimize ( sum_square(Sigma_var))
         
         subject to
             r(:,1) == r_0

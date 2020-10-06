@@ -81,8 +81,6 @@
             N_lower             =     0;
             Epsilon             =     1;
             
-
-
         % Find optimal final time
             Check = Verify_Infeasible(position,velocity,N_upper);               % Check Inf & Feasible
 
@@ -119,7 +117,3 @@
         
     
     end
-
-%%
-N_lower
-i

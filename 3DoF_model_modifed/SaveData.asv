@@ -59,19 +59,16 @@
     outSim.Thr_z_I(i,1)        =       outThr.Fi_Thr(3,1);
     
     Thr_I_norm                 =       norm([outThr.Fi_Thr(1,1);outThr.Fi_Thr(2,1);outThr.Fi_Thr(3,1)]);
-    outSim.Thr_l_norm(i,1)     =       Thr_I_norm;
+    outSim.Thr_l_norm          =       Thr_I_norm;
     
     outSim.Thr_x_L(i,1)        =       outGCU.Thr_Cmd(1);
     outSim.Thr_y_L(i,1)        =       outGCU.Thr_Cmd(2);
     outSim.Thr_z_L(i,1)        =       outGCU.Thr_Cmd(3);
     
-    Thr_L_norm                 =       norm([outGCU.Thr_Cmd(1);outGCU.Thr_Cmd(2);outGCU.Thr_Cmd(3)]);
-    outSim.Thr_L_norm(i,1)     =       Thr_L_norm;
+    Thr_L_norm                 =       norm([outGCU.Thr_Cmd(1);outGCU.Thr_Cmd(1);outGCU.Thr_Cmd(1)]);
+    
     
     outSim.Fitot_x(i,1)        =       outDyn.Fi_tot(1,1);
     outSim.Fitot_y(i,1)        =       outDyn.Fi_tot(2,1);
     outSim.Fitot_z(i,1)        =       outDyn.Fi_tot(3,1);
-    
-    Fitot_norm                 =       norm([outDyn.Fi_tot(1,1);outDyn.Fi_tot(2,1);outDyn.Fi_tot(3,1)]);
-    outSim.Fitot_norm(i,1)     =       Fitot_norm;
     
