@@ -81,8 +81,6 @@
             N_lower             =     0;
             Epsilon             =     1;
             
-
-
         % Find optimal final time
             Check = Verify_Infeasible(position,velocity,N_upper);               % Check Inf & Feasible
 
@@ -110,6 +108,18 @@
                     datSim.tf = N_upper * datSim.dt;
                 end
             end
+            
+            %%%%%% test something
+            
+            test_N = N_upper + 1;
+            test_check = Verify_Infeasible(position,velocity,test_N);
+            if(test_check ==0)
+                outSim.test = outSim.test + 1;
+            %else
+                %outSim.test = outSim.test + 1;
+            end
+            
+            %%%%%%
         
 
 
@@ -119,7 +129,10 @@
         
     
     end
-
-%%
-N_lower
-iff
+    
+    %%
+    if cvx_status == 'Solved'
+        disp(3)
+    end
+    
+    

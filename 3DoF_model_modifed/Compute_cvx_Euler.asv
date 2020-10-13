@@ -23,10 +23,8 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
         Mu2(t) = datThr.ThrustUpper * exp(-z_0(t));
     end
     
- %.. compute cvx
- %cvx_solver MoseK
+ %.. compute cvx    
     cvx_begin
-        cvx_precision low
         
         variable u(3,N_step+1)
         variable r(3,N_step+1)
@@ -69,7 +67,20 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
     E = u(2,1) .* exp(z(1));
     D = u(3,1) .* exp(z(1));
     
+    %% test
+    if(datSim.tf == 1.0)
+    for t = 1:N_step
+    test_N(t) = u(1,t) .* exp(z(t));
+    test_E(t) = u(2,t) .* exp(z(t));
+    test_D(t) = u(3,t) .* exp(z(t));
+    test_norm(t) = norm([test_N(t);test_E(t);test_D(t)]);
+    end
+    figure(50)  
+    plot( test_norm(:), 'b', 'linewidth', 1.5 )
+    xlabel('Time (sec)')
+    ylabel('Thrust norm')
+    title( 'Thrust norm L-frame', 'FontSize', 12 )
+    grid on ; hold on;     
+    end
     
 end
-
-
