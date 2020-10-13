@@ -81,6 +81,7 @@
             Epsilon             =     1;
             
         % Find optimal final time
+            Thr_Cmd = [0; 0; 0];
             Thr_Cmd = Compute_cvx_Euler(position,velocity,N_upper);              % Check Inf & Feasible
             if(Thr_Cmd == 0)                                                      % Infeasible
                 while(1)
