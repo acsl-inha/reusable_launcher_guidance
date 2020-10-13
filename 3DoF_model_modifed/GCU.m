@@ -81,13 +81,14 @@
             Epsilon             =     1;
             
         % Find optimal final time
-            Thr_Cmd = [0; 0; 0];
-            Thr_Cmd = Compute_cvx_Euler(position,velocity,N_upper);              % Check Inf & Feasible
+            [N,E,D] = Compute_cvx_Euler(position,velocity,N_upper);
+            Thr_Cmd = [N,E,D];              % Check Inf & Feasible
             if(Thr_Cmd == 0)                                                      % Infeasible
                 while(1)
                     N_lower =  N_upper;                                         % Change Lower bound
                     N_upper =  N_upper + N_upper;                               % Change Upper bound
-                    Thr_Cmd = Compute_cvx_Euler(position,velocity,N_upper);
+                    [N,E,D] = Compute_cvx_Euler(position,velocity,N_upper);
+                    Thr_Cmd = [N,E,D];
                     if(Thr_Cmd == 0)                                              % Infeasible
                         continue
                     else
@@ -95,11 +96,12 @@
                     end       
                 end
             end
-            Thr_Cmd
+            
             datSim.tf = N_upper * datSim.dt;
             while(N_upper - N_lower > Epsilon)
                 S     =     fix( 0.5 * ( N_upper + N_lower));
-                Thr_Cmd =     Compute_cvx_Euler(position,velocity,S); 
+                [N,E,D] = Compute_cvx_Euler(position,velocity,S); 
+                Thr_Cmd = [N,E,D]; 
                 if(Thr_Cmd == 0)                                                
                     N_lower  = S;                                             % Infeasible --> Change Lower bound
                 else
@@ -115,4 +117,7 @@
         
     
     end
+    
+    %%
+    
     
