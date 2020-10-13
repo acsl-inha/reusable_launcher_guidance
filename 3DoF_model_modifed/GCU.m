@@ -76,52 +76,37 @@
         
     else
         
-
             N_upper             =     fix(abs( position(3) / velocity(3))/datSim.dt);
             N_lower             =     0;
             Epsilon             =     1;
             
         % Find optimal final time
-            Check = Verify_Infeasible(position,velocity,N_upper);               % Check Inf & Feasible
-
-            if(Check == 0)                                                      % Infeasible
+            Thr_Cmd = Compute_cvx_Euler(position,velocity,N_upper);              % Check Inf & Feasible
+            if(Thr_Cmd == 0)                                                      % Infeasible
                 while(1)
                     N_lower =  N_upper;                                         % Change Lower bound
                     N_upper =  N_upper + N_upper;                               % Change Upper bound
-                    Check = Verify_Infeasible(position,velocity,N_upper);
-                    if(Check ~= 0)                                              % Feasible
+                    Thr_Cmd = Compute_cvx_Euler(position,velocity,N_upper);
+                    if(Thr_Cmd == 0)                                              % Infeasible
+                        continue
+                    else
                         break
                     end       
                 end
             end
-
-            Thr_Cmd  = Check;
+            Thr_Cmd
             datSim.tf = N_upper * datSim.dt;
             while(N_upper - N_lower > Epsilon)
                 S     =     fix( 0.5 * ( N_upper + N_lower));
-                Check =     Verify_Infeasible(position,velocity,S);
-                if(Check == 0)                                                
+                Thr_Cmd =     Compute_cvx_Euler(position,velocity,S); 
+                if(Thr_Cmd == 0)                                                
                     N_lower  = S;                                             % Infeasible --> Change Lower bound
                 else
-                    N_upper  = S;                                             % Feasible  --> Change Upper bound
-                    Thr_Cmd  = Check;                                         
+                    N_upper  = S;                                             % Feasible  --> Change Upper bound                                 
                     datSim.tf = N_upper * datSim.dt;
                 end
             end
-            
-            %%%%%% test something
-            
-            test_N = N_upper + 1;
-            test_check = Verify_Infeasible(position,velocity,test_N);
-            if(test_check ==0)
-                outSim.test = outSim.test + 1;
-            %else
-                %outSim.test = outSim.test + 1;
-            end
-            
-            %%%%%%
         
-
 
     %.. Exporting Data
 
@@ -129,10 +114,4 @@
         
     
     end
-    
-    %%
-    if cvx_status == 'Solved'
-        disp(3)
-    end
-    
     

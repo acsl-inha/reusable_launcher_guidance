@@ -65,9 +65,17 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
 
     cvx_end
     
-    N = u(1,1) .* exp(z(1));
-    E = u(2,1) .* exp(z(1));
-    D = u(3,1) .* exp(z(1));
+    
+    Check = convertCharsToStrings(cvx_status);
+    if Check == "Solved"
+        N = u(1,1) .* exp(z(1));
+        E = u(2,1) .* exp(z(1));
+        D = u(3,1) .* exp(z(1));
+    else
+        N = 0;
+        E = 0;
+        D = 0;
+    end
     
     
 end
