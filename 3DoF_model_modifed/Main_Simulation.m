@@ -11,7 +11,8 @@
 %.. Matlab Initialization 
 
     clc;        clear all ;         close all ; 
-    cvx_solver MoseK          
+    %cvx_solver MoseK
+    cvx_solver SDPT3
 %.. Loading Files 
 
     Sim_Parameter ; 
@@ -23,7 +24,7 @@
     
     %%%%% test
     outSim.test = 0;
-    
+    outSim.test_inf = 0;
     %%%%
 %.. Main Loop    
     tic
@@ -117,6 +118,14 @@
     legend('X_L','Y_L','Z_L')
     lgd = legend;
     lgd.FontSize = 7;
+    
+    figure(14)  
+    plot( outSim.Time(:,1), outSim.Thr_Aero_norm(:,1), 'b', 'linewidth', 1.5 )
+    xlabel('Time (sec)')
+    ylabel('Aero norm')
+    title( 'Aero norm L-frame', 'FontSize', 12 )
+    ylim([0 0.5e+6])
+    grid on ; hold on;     
     %%
     
     figure(13)

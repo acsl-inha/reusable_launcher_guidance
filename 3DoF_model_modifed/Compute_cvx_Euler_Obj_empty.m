@@ -1,10 +1,10 @@
-function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
+function [N,E,D]= Compute_cvx_Euler_Obj_empty(position,velocity,N_step)
     % Compute optimal thrust and Return initial thrust (NED)
     
 %.. Global and Persistent Variables 
 
     global  datThr  datSim    datRlv    datUnit
-    global  outDyn
+    global  outDyn  outSim
     
 %.. Local Variables
 
@@ -24,7 +24,7 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
     end
     
  %.. compute cvx
- %cvx_solver MoseK
+ 
     cvx_begin
         cvx_precision low
         
@@ -33,9 +33,7 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
         variable v(3,N_step+1)
         variable Sigma_var(N_step+1)
         variable z(N_step+1)
-     
-        %minimize ( -z(end))
-        minimize ( sum_square(Sigma_var))
+        
         
         subject to
             r(:,1) == r_0
@@ -65,10 +63,20 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
 
     cvx_end
     
-    Check cvx_status 
-    N = u(1,1) .* exp(z(1));
-    E = u(2,1) .* exp(z(1));
-    D = u(3,1) .* exp(z(1));
+    
+    Check = convertCharsToStrings(cvx_status);
+    if Check == "Solved"
+        outSim.test_inf = outSim.test_inf + 1;
+        N = u(1,1) .* exp(z(1));
+        E = u(2,1) .* exp(z(1));
+        D = u(3,1) .* exp(z(1));
+        
+    else
+        
+        N = 0;
+        E = 0;
+        D = 0;
+    end
     
     
 end

@@ -4,7 +4,7 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
 %.. Global and Persistent Variables 
 
     global  datThr  datSim    datRlv    datUnit
-    global  outDyn
+    global  outDyn  outSim
     
 %.. Local Variables
 
@@ -16,6 +16,9 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
     r_f                 =   datRlv.Rbllf;                                         % Final position in L-Coord.
     v_f                 =   datRlv.Vbllf;                                         % Final velocity in L-Coord.
     Mass                =   outDyn.Mass;
+    z_0                 =   [];
+    Mu1                 =   [];
+    Mu2                 =   [];
     
     for t = 1:N_step+1
         z_0(t) = log(Mass - Alpha * datThr.ThrustUpper * (t-1) * delt);
@@ -24,7 +27,7 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
     end
     
  %.. compute cvx
- %cvx_solver MoseK
+ 
     cvx_begin
         cvx_precision low
         
@@ -72,7 +75,11 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
         N = u(1,1) .* exp(z(1));
         E = u(2,1) .* exp(z(1));
         D = u(3,1) .* exp(z(1));
-        
+    elseif Check == "Inaccurate/Solved"
+        outSim.test = outSim.test + 1;
+        N = u(1,1) .* exp(z(1));
+        E = u(2,1) .* exp(z(1));
+        D = u(3,1) .* exp(z(1));
     else
         N = 0;
         E = 0;

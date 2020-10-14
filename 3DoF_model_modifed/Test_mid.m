@@ -1,17 +1,72 @@
     global  datThr  datSim    datRlv    datUnit
     global  outDyn
-    
+    global  outSim  
+
+%% Find_final time
+tt = 100 ;
+
+position =        [outSim.X_L(tt);outSim.Y_L(tt);outSim.Y_L(tt)];
+velocity =        [outSim.Vx_L(tt);outSim.Vz_L(tt);outSim.Vz_L(tt)];
+
+
+
+        N_upper             =     fix(abs( position(3) / velocity(3))/datSim.dt);
+        N_lower             =     0;
+        Epsilon             =     1;
+        
+        % Find optimal final time
+        [N,E,D] = Compute_cvx_Euler(position,velocity,N_upper);
+        Thr_Cmd = [N;E;D];                                                  % Feasible --> Thrust ,  Infeasible --> [0;0;0]
+        if(Thr_Cmd == 0)                                                    % Infeasible
+            while(1)
+                N_lower =  N_upper;                                         % Change Lower bound
+                N_upper =  N_upper + N_upper;                               % Change Upper bound
+                [N,E,D] = Compute_cvx_Euler(position,velocity,N_upper);
+                Thr_Cmd = [N;E;D];
+                if(Thr_Cmd == 0)                                            % Infeasible
+                    continue
+                else                                                        % Feasible
+                    break
+                end
+            end
+        end
+        
+        Final_N = N_upper;
+        
+        while(N_upper - N_lower > Epsilon)
+            S       = fix( 0.5 * ( N_upper + N_lower));
+            [N,E,D] = Compute_cvx_Euler(position,velocity,S);
+            Thr_Cmd = [N;E;D];
+            if(Thr_Cmd == 0)
+                N_lower = S;                                                % Infeasible --> Change Lower bound
+            else
+                N_upper = S;                                                % Feasible   --> Change Upper bound
+                Final_N = N_upper;
+            end
+        end
+      
+        
+ %%
+        Final_N
+%%
+
+
+
 %.. Local Variables
 
     delt                =   datSim.dt;                                            % dt
     Alpha               =   1/( datThr.Isp * datUnit.AGRAV);                      % Fuel consumption
     g_e                 =   datUnit.AGRAV;                                        % Earth grvity
-    r_0                 =   datRlv.Rbll0;                                             % Initial position in L-Coord.
-    v_0                 =   datRlv.Vbll0;                                             % Initial velocity in L-Coord.
+    r_0                 =   position;                                         % Initial position in L-Coord.
+    v_0                 =   velocity;                                         % Initial velocity in L-Coord.
     r_f                 =   datRlv.Rbllf;                                         % Final position in L-Coord.
     v_f                 =   datRlv.Vbllf;                                         % Final velocity in L-Coord.
     Mass                =   outDyn.Mass;
-    N_step              =   fix(16/delt);
+    N_step              =   Final_N;
+    
+    
+    %Mu1 = [];
+    %Mu2 = [];
     
     for t = 1:N_step+1
         z_0(t) = log(Mass - Alpha * datThr.ThrustUpper * (t-1) * delt);
@@ -21,7 +76,7 @@
     
  %.. compute cvx    
     cvx_begin
-        
+        cvx_precision low
         variable u(3,N_step+1)
         variable r(3,N_step+1)
         variable v(3,N_step+1)
@@ -59,7 +114,10 @@
 
     cvx_end
     
-    
+    test_norm = [];
+    test_N =[];
+    test_E =[];
+    test_D =[];
     for t = 1:N_step
     test_N(t) = u(1,t) .* exp(z(t));
     test_E(t) = u(2,t) .* exp(z(t));
@@ -75,7 +133,7 @@
     ylabel('Thrust norm')
     title( 'Thrust norm L-frame', 'FontSize', 12 )
     grid on ; hold on;     
+    
 
-    
-    %%
-    
+%%
+Final_N

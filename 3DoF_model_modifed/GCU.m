@@ -66,58 +66,55 @@
    
     %% GetThrust in Landing Coordinate System(NED)
     %.. GCU Module
-
+    
     % Thrust ( Your Guidance Command, L-Frame )
+    
+    
+    
     if(abs(position(3))<2)
         [N,E,D]             =       Compute_cvx_Euler_Velocity_zero(position,velocity,N_upper);
         Thr_Cmd             =       [N;E;D];
         outGCU.Thr_Cmd      =       Thr_Cmd ;
         datSim.tf           =       datSim.tf - datSim.dt;
-        
     else
+        N_upper             =     fix(abs( position(3) / velocity(3))/datSim.dt);
+        N_lower             =     0;
+        Epsilon             =     1;
         
-            N_upper             =     fix(abs( position(3) / velocity(3))/datSim.dt);
-            N_lower             =     0;
-            Epsilon             =     1;
-            
         % Find optimal final time
-            [N,E,D] = Compute_cvx_Euler(position,velocity,N_upper);
-            Thr_Cmd = [N,E,D];              % Check Inf & Feasible
-            if(Thr_Cmd == 0)                                                      % Infeasible
-                while(1)
-                    N_lower =  N_upper;                                         % Change Lower bound
-                    N_upper =  N_upper + N_upper;                               % Change Upper bound
-                    [N,E,D] = Compute_cvx_Euler(position,velocity,N_upper);
-                    Thr_Cmd = [N,E,D];
-                    if(Thr_Cmd == 0)                                              % Infeasible
-                        continue
-                    else
-                        break
-                    end       
+        [N,E,D] = Compute_cvx_Euler(position,velocity,N_upper);
+        Thr_Cmd = [N;E;D];                                                  % Feasible --> Thrust ,  Infeasible --> [0;0;0]
+        if(Thr_Cmd == 0)                                                    % Infeasible
+            while(1)
+                N_lower =  N_upper;                                         % Change Lower bound
+                N_upper =  N_upper + N_upper;                               % Change Upper bound
+                [N,E,D] = Compute_cvx_Euler(position,velocity,N_upper);
+                Thr_Cmd = [N;E;D];
+                if(Thr_Cmd == 0)                                            % Infeasible
+                    continue
+                else                                                        % Feasible
+                    break
                 end
             end
-            
-            datSim.tf = N_upper * datSim.dt;
-            while(N_upper - N_lower > Epsilon)
-                S     =     fix( 0.5 * ( N_upper + N_lower));
-                [N,E,D] = Compute_cvx_Euler(position,velocity,S); 
-                Thr_Cmd = [N,E,D]; 
-                if(Thr_Cmd == 0)                                                
-                    N_lower  = S;                                             % Infeasible --> Change Lower bound
-                else
-                    N_upper  = S;                                             % Feasible  --> Change Upper bound                                 
-                    datSim.tf = N_upper * datSim.dt;
-                end
+        end
+        
+        datSim.tf = N_upper * datSim.dt;
+        outGCU.Thr_Cmd = Thr_Cmd ;
+        
+        while(N_upper - N_lower > Epsilon)
+            S       = fix( 0.5 * ( N_upper + N_lower));
+            [N,E,D] = Compute_cvx_Euler(position,velocity,S);
+            Thr_Cmd = [N;E;D];
+            if(Thr_Cmd == 0)
+                N_lower = S;                                                % Infeasible --> Change Lower bound
+            else
+                N_upper = S;                                                % Feasible   --> Change Upper bound
+                datSim.tf = N_upper * datSim.dt;
+                outGCU.Thr_Cmd = Thr_Cmd ;
             end
+        end
         
-
-    %.. Exporting Data
-
-        outGCU.Thr_Cmd = 	Thr_Cmd ;
+        test = Compute_cvx_Euler_Obj_empty(position,velocity,N_lower);
         
-    
     end
-    
-    %%
-    
     
