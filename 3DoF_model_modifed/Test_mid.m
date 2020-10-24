@@ -3,7 +3,7 @@
     global  outSim  
 
 %% Find_final time
-tt = 100 ;
+tt =  100;
 
 position =        [outSim.X_L(tt);outSim.Y_L(tt);outSim.Y_L(tt)];
 velocity =        [outSim.Vx_L(tt);outSim.Vz_L(tt);outSim.Vz_L(tt)];
@@ -30,9 +30,7 @@ velocity =        [outSim.Vx_L(tt);outSim.Vz_L(tt);outSim.Vz_L(tt)];
                 end
             end
         end
-        
-        Final_N = N_upper;
-        
+       
         while(N_upper - N_lower > Epsilon)
             S       = fix( 0.5 * ( N_upper + N_lower));
             [N,E,D] = Compute_cvx_Euler(position,velocity,S);
@@ -41,13 +39,11 @@ velocity =        [outSim.Vx_L(tt);outSim.Vz_L(tt);outSim.Vz_L(tt)];
                 N_lower = S;                                                % Infeasible --> Change Lower bound
             else
                 N_upper = S;                                                % Feasible   --> Change Upper bound
-                Final_N = N_upper;
             end
         end
-      
+      Final_N = N_upper;
         
- %%
-        Final_N
+
 %%
 
 
@@ -65,8 +61,8 @@ velocity =        [outSim.Vx_L(tt);outSim.Vz_L(tt);outSim.Vz_L(tt)];
     N_step              =   Final_N;
     
     
-    %Mu1 = [];
-    %Mu2 = [];
+    Mu1 = [];
+    Mu2 = [];
     
     for t = 1:N_step+1
         z_0(t) = log(Mass - Alpha * datThr.ThrustUpper * (t-1) * delt);
@@ -134,6 +130,3 @@ velocity =        [outSim.Vx_L(tt);outSim.Vz_L(tt);outSim.Vz_L(tt)];
     title( 'Thrust norm L-frame', 'FontSize', 12 )
     grid on ; hold on;     
     
-
-%%
-Final_N

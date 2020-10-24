@@ -11,7 +11,7 @@
 %.. Matlab Initialization 
 
     clc;        clear all ;         close all ; 
-    %cvx_solver MoseK
+
     cvx_solver SDPT3
 %.. Loading Files 
 
@@ -21,11 +21,6 @@
 
     Initialization ;  
     
-    
-    %%%%% test
-    outSim.test = 0;
-    outSim.test_inf = 0;
-    %%%%
 %.. Main Loop    
     tic
     while(1)
