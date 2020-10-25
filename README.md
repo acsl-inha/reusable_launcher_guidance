@@ -1,4 +1,5 @@
 
+
 # 3Dof_model_modified
 
 > Original code에서 Main_simulation, GCU, Simparameter 파일을 수정하였고 <br/>
@@ -144,7 +145,11 @@ Computation time:  52 min
 | <img src="https://user-images.githubusercontent.com/62292619/97099361-67c3f600-16cb-11eb-83e9-5159c28f0b4d.jpg"> | 
 |:--:| 
 |  **Fig. 1.4 Thrust norm**|
+<br/>
 
+### 3D-animation
+
+![Paramter1](https://user-images.githubusercontent.com/62292619/97107606-c7da8c80-170b-11eb-90a0-c6b3c6841eb7.gif)
 
 <br/>
 
@@ -180,11 +185,11 @@ Computation time:  74 min<br/>
 |:--:| 
 | **Fig. 2.1 Position** |
 
- | <img src="https://user-images.githubusercontent.com/62292619/97099362-67c3f600-16cb-11eb-9077-617ae98d038e.jpg"> | 
+ | <img src="https://user-images.githubusercontent.com/62292619/97100724-cc864d00-16d9-11eb-8aa8-a94e1ee6882f.jpg"> | 
 |:--:| 
 | **fig. 2.2 Velocity** |
 
- | <img src="https://user-images.githubusercontent.com/62292619/97100724-cc864d00-16d9-11eb-8aa8-a94e1ee6882f.jpg"> | 
+ | <img src="https://user-images.githubusercontent.com/62292619/97100726-cd1ee380-16d9-11eb-83e0-a343ae7a4ed6.jpg"> | 
 |:--:| 
 | **Fig. 2.3 Thrust** |
 
@@ -193,6 +198,16 @@ Computation time:  74 min<br/>
 | <img src="https://user-images.githubusercontent.com/62292619/97100723-cb552000-16d9-11eb-8d45-022a55a89d95.jpg"> | 
 |:--:| 
 |  **Fig. 2.4 Thrust norm**|
+
+
+<br/>
+
+### 3D-animation
+
+![Parmeter2](https://user-images.githubusercontent.com/62292619/97106430-ebe69f80-1704-11eb-9699-c20efe0f711f.gif)
+
+
+
 
 ---
 
@@ -204,6 +219,3 @@ Computation time:  74 min<br/>
  > Michael Szmuk, Behcet Aclkmese, Andrew W. Berning Jr., “Successive 
 Convexification for Fuel-Optimal Powered Landing With Aerodynamic Drag and 
 Non-Convex Constraints,”American Institute of Aeronautics and Astronautics
-
-
-	
