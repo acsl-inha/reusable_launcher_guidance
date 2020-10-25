@@ -121,7 +121,7 @@ GCU 에서 매 Step 마다 비행 시간을 계산하여 최적의 추력을 얻
 <br/>
 
 Optimal final time:  14.3 sec<br/>
-computation time:  52 min
+Computation time:  52 min
 
 <br/>
 
@@ -171,7 +171,7 @@ computation time:  52 min
 >Simulation 1에서 초기위치,초기속도를 변경
 
 Optimal final time:  17.2 sec<br/>
-computation time:  74 min<br/>
+Computation time:  74 min<br/>
 
 <br/><br/>
 ### Simulation result
