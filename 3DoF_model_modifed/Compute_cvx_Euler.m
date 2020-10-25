@@ -71,12 +71,10 @@ function [N,E,D]= Compute_cvx_Euler(position,velocity,N_step)
     
     Check = convertCharsToStrings(cvx_status);
     if Check == "Solved"
-        
         N = u(1,1) .* exp(z(1));
         E = u(2,1) .* exp(z(1));
         D = u(3,1) .* exp(z(1));
     elseif Check == "Inaccurate/Solved"
-        outSim.test = outSim.test + 1;
         N = u(1,1) .* exp(z(1));
         E = u(2,1) .* exp(z(1));
         D = u(3,1) .* exp(z(1));

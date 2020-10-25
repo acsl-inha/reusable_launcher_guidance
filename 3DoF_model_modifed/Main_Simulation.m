@@ -64,6 +64,7 @@
      %% plotting
     
     figure(10)
+    set(gcf,'position',[100,100,800,400])
     subplot(3,1,1)
     plot(outSim.Time(:,1),outSim.Thr_x_L(:,1))
     ylabel('N')
@@ -77,7 +78,8 @@
     ylabel('D')
     
 
-    figure(11)  
+    figure(11)
+    set(gcf,'position',[100,100,800,400])
     plot( outSim.Time(:,1), outSim.Thr_L_norm(:,1), 'b', 'linewidth', 1.5 )
     xlabel('Time (sec)')
     ylabel('Thrust norm')
@@ -85,7 +87,8 @@
     ylim([0 0.5e+6])
     grid on ; hold on;     
 
-    figure(12)  
+    figure(12)
+    set(gcf,'position',[100,100,800,400])
     plot( outSim.Time(:,1), outSim.Vx_L(:,1), 'r', 'linewidth', 1.5 ) 
     xlabel('Time (sec)')
     ylabel('Velocity(m/s)')
@@ -100,7 +103,8 @@
     lgd.FontSize = 7;
     
     
-    figure(13)  
+    figure(13)
+    set(gcf,'position',[100,100,800,400])
     plot( outSim.Time(:,1), outSim.X_L(:,1), 'r', 'linewidth', 1.5 ) 
     grid on ; hold on; 
     title('Position in Landing Frame', 'FontSize', 12)
@@ -113,8 +117,9 @@
     legend('X_L','Y_L','Z_L')
     lgd = legend;
     lgd.FontSize = 7;
-    
+  
     figure(14)  
+    set(gcf,'position',[100,100,800,400])
     plot( outSim.Time(:,1), outSim.Thr_Aero_norm(:,1), 'b', 'linewidth', 1.5 )
     xlabel('Time (sec)')
     ylabel('Aero norm')

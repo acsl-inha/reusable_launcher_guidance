@@ -63,9 +63,12 @@
                                   107.00000 ] ;  
                               
     % Initial Conditions
+    
+    %parameter1
     datRlv.Rbll0            =   [ 0 ; 500 ; -500.0 ] ;                     % Initial Body Position w.r.t. Landing Point(L) in L-Coord. 
     datRlv.Vbll0            =   [ 50 ; 0 ; 50 ] ;                          % Initial Body Velocity. w.r.t. Landing Point(L) in L-Coord. 
     
+    %parameter2
     %datRlv.Rbll0            =   [ 500 ; 100 ; -700.0 ] ;                     % Initial Body Position w.r.t. Landing Point(L) in L-Coord. 
     %datRlv.Vbll0            =   [ 50 ; -50 ; 50 ] ;                          % Initial Body Velocity. w.r.t. Landing Point(L) in L-Coord. 
     
