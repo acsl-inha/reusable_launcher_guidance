@@ -184,7 +184,7 @@ Computation time:  74 min<br/>
 |:--:| 
 | **fig. 2.2 Velocity** |
 
- | <img src="https://user-images.githubusercontent.com/62292619/97100726-cd1ee380-16d9-11eb-83e0-a343ae7a4ed6.jpg"> | 
+ | <img src="https://user-images.githubusercontent.com/62292619/97100724-cc864d00-16d9-11eb-8aa8-a94e1ee6882f.jpg"> | 
 |:--:| 
 | **Fig. 2.3 Thrust** |
 
