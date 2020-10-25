@@ -187,6 +187,9 @@ computation time:  74 min<br/>
  | <img src="https://user-images.githubusercontent.com/62292619/97100726-cd1ee380-16d9-11eb-83e0-a343ae7a4ed6.jpg"> | 
 |:--:| 
 | **Fig. 2.3 Thrust** |
+
+
+
 | <img src="https://user-images.githubusercontent.com/62292619/97100723-cb552000-16d9-11eb-8d45-022a55a89d95.jpg"> | 
 |:--:| 
 |  **Fig. 2.4 Thrust norm**|
